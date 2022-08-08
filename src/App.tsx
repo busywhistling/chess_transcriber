@@ -42,6 +42,7 @@ function LeftSidebar({ selectedFeature, setSelectedFeature, setNotation, setIsWr
         <div className='leftSidebar'>
             <div className='features'>
                 <h1>Chess game simulator</h1>
+                <p>The website is not yet responsive. Please zoom out on your browser if the UI looks wierd.</p>
                 <p>Select the feature you want to use below.</p>
                 <div className='options'>
                     <div className={'option ' + (selectedFeature === 0 ? 'selected-feature' : '')} onClick={() => { if (selectedFeature === 1) { setSelectedFeature(1 - selectedFeature); dispatch(resetChessboard()); setNotation(''); setIsWrongNotation(false); setCurrentSelected(0); } }}>
