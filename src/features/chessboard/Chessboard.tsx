@@ -37,7 +37,7 @@ function Tile({ pos, piece, tileColor, highlight, inputAllowed }: TileProps) {
     const dispatch = useDispatch();
     return (
         <div className={'tile ' + tileColor + '-tile ' + (highlight ? 'highlight' : '')} onClick={() => { if (inputAllowed) dispatch(handleMove([pos, highlight])) }}>
-            {piece && <div style={{ backgroundImage: `url(/${piece}.png)` }} className='chesspiece'></div>}
+            {piece && <div style={{ backgroundImage: `url(${piece}.png)` }} className='chesspiece'></div>}
         </div >
     );
 }
