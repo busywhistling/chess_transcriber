@@ -141,7 +141,7 @@ function Credits() {
     return (
         <div className='Credits'>
             Made by <a href="https://paramjit.org" target="_blank">Paramjit</a> (see
-            the rest of the <a href='https://paramjit.org/portfolio' target="_blank">portfolio</a>)<br />
+            the rest of the <a href='https://paramjit.org/dev' target="_blank">portfolio</a>)<br />
             Using the headless <a href="https://github.com/jhlywa/chess.js">chess.js</a> library for the chess logic <br />
             Using <a href="https://reactjs.org/">React</a>, <a href="https://redux.js.org">Redux</a>, HTML, CSS, <a href="https://www.npmjs.com/">npm</a> &amp; <a href="https://vitejs.dev/">vite</a>
         </div >
