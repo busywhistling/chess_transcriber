@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",
+    "animate.css": "^4.1.1",
     "chess.js": "^0.13.4",
     "dompurify": "^2.3.10",
     "html-react-parser": "^3.0.1",
@@ -23,6 +24,7 @@
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.0",
+    "sass": "^1.54.8",
     "typescript": "^4.6.4",
     "vite": "^3.0.0"
   }

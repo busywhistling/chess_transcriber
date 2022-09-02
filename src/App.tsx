@@ -6,7 +6,8 @@ import { Chess } from 'chess.js';
 import Chessboard from './features/chessboard/Chessboard'
 import { selectHistory, resetChessboard, loadPGN, loadGame, selectMoves } from './features/chessboard/chessboardSlice';
 
-import './App.css'
+import './App.scss'
+import 'animate.css';
 import { current } from '@reduxjs/toolkit';
 
 export default function App() {
@@ -40,26 +41,23 @@ function LeftSidebar({ selectedFeature, setSelectedFeature, setNotation, setIsWr
     const dispatch = useDispatch();
     return (
         <div className='leftSidebar'>
-            <div className='features'>
+            <div>
                 <h1>Chess game simulator</h1>
-                <p>The website is not yet responsive. Please zoom out on your browser if the UI looks wierd.</p>
-                <p>Select the feature you want to use below.</p>
-                <div className='options'>
-                    <div className={'option ' + (selectedFeature === 0 ? 'selected-feature' : '')} onClick={() => { if (selectedFeature === 1) { setSelectedFeature(1 - selectedFeature); dispatch(resetChessboard()); setNotation(''); setIsWrongNotation(false); setCurrentSelected(0); } }}>
-                        <h3>Transcribe moves to algebraic notation</h3>
-                        {/* Here is the description */}
-                        <p>Standard Algebraic Notation (SAN) is a method for recording and
-                            describing moves in a game of chess, recognized by the
-                            international chess governing body FIDE. This app lets you play a
-                            game on the adjacent chessboard, and obtain the corresponding
-                            notation at the right.</p>
-                    </div>
-                    <div className={'option ' + (selectedFeature === 1 ? 'selected-feature' : '')} onClick={() => { if (selectedFeature === 0) { setSelectedFeature(1 - selectedFeature); dispatch(resetChessboard()) } }}>
-                        <h3>Play recorded notation of a game</h3>
-                        <p>This feature lets you input the notation for a given game and
-                            walk through it using the controls provided on the right. Programmed
-                            logic makes sure you can only input valid game notations.</p>
-                    </div>
+                <h2>Select the feature you want to use below.</h2>
+                <div className={'feature ' + (selectedFeature === 0 ? 'selected-feature' : '')} onClick={() => { if (selectedFeature === 1) { setSelectedFeature(1 - selectedFeature); dispatch(resetChessboard()); setNotation(''); setIsWrongNotation(false); setCurrentSelected(0); } }}>
+                    <h3>Transcribe moves to algebraic notation</h3>
+                    {/* Here is the description */}
+                    <p>Standard Algebraic Notation (SAN) is a method for recording and
+                        describing moves in a game of chess, recognized by the
+                        international chess governing body FIDE. This app lets you play a
+                        game on the adjacent chessboard, and obtain the corresponding
+                        notation at the right.</p>
+                </div>
+                <div className={'feature ' + (selectedFeature === 1 ? 'selected-feature' : '')} onClick={() => { if (selectedFeature === 0) { setSelectedFeature(1 - selectedFeature); dispatch(resetChessboard()) } }}>
+                    <h3>Play recorded notation of a game</h3>
+                    <p>This feature lets you input the notation for a given game and
+                        walk through it using the controls provided on the right. Programmed
+                        logic makes sure you can only input valid game notations.</p>
                 </div>
             </div>
 
@@ -112,18 +110,20 @@ function RightSidebar({ selectedFeature, notation, setNotation, isWrongNotation,
             {selectedFeature === 0 ? (
                 <div>
                     <p>Below you can find the algebraic notation incrementally being
-                        added for your moves. Promotions are not handled because it requires
-                        user input to select which piece you want.</p>
-                    <div className='chess-moves'>{parse(useSelector(selectMoves))}</div></div>)
+                        added for your moves.
+                        {/* Promotions are not handled because it requires
+                        user input to select which piece you want. */}
+                    </p>
+                    <div className='chess-moves animate__fadeInRight'>{parse(useSelector(selectMoves))}</div></div>)
                 : (<div>
                     <fieldset>
                         <legend>Enter SAN</legend>
                         <p>Please enter your moves in algebraic notation in the input box
                             below. Click on submit once you've done so.</p>
-                        <textarea id="san-input" rows={10} cols={54} name="SAN input" placeholder="Enter notation here" required onChange={(e) => { setNotation(e.target.value); setIsWrongNotation(false) }} >
-                        </textarea><br />
+                        <textarea id="san-input" rows={5} cols={28} name="SAN input" placeholder="Enter notation here" required onChange={(e) => { setNotation(e.target.value); setIsWrongNotation(false) }} ></textarea>
+                        <br />
                         <button onClick={() => testChessnotation(notation)}>Submit</button>
-                        {(notation && isWrongNotation) && <div className='warning'>Your entered input is not valid.</div>}
+                        {(notation && isWrongNotation) && <div className='warning'>Invalid input, try again.</div>}
                     </fieldset>
                     <p>Here are your moves. Double click on the one you want to jump to.</p>
                     {interactiveHistory()}
@@ -139,11 +139,16 @@ function RightSidebar({ selectedFeature, notation, setNotation, isWrongNotation,
 
 function Credits() {
     return (
-        <div className='Credits'>
-            Made by <a href="https://paramjit.org" target="_blank">Paramjit</a> (see
-            the rest of the <a href='https://paramjit.org/dev' target="_blank">portfolio</a>)<br />
-            Using the headless <a href="https://github.com/jhlywa/chess.js">chess.js</a> library for the chess logic <br />
-            Using <a href="https://reactjs.org/">React</a>, <a href="https://redux.js.org">Redux</a>, HTML, CSS, <a href="https://www.npmjs.com/">npm</a> &amp; <a href="https://vitejs.dev/">vite</a>
+        <div className='credits'>
+            <a href="https://paramjit.org"><img src="/avatar.jpg" className="avatar" /> </a>
+            <div className='links'>
+                <p>
+                    By <a href="https://paramjit.org">Paramjit</a> with ❤️<br />
+                    explore the source on <a href="https://github.com/busywhistling/chess_simulator">github</a> or <a href="https://codesandbox.io/p/github/busywhistling/chess_simulator">codesandbox</a>.
+                    {/* Using the headless <a href="https://github.com/jhlywa/chess.js">chess.js</a> library for the chess logic <br />
+            Using <a href="https://reactjs.org/">React</a>, <a href="https://redux.js.org">Redux</a>, HTML, CSS, <a href="https://www.npmjs.com/">npm</a> &amp; <a href="https://vitejs.dev/">vite</a> */}
+                </p>
+            </div>
         </div >
     )
 }
