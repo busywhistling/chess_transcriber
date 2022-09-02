@@ -1,4 +1,3 @@
-import './Chessboard.css'
 import { handleMove, selectBoard, selectHighlights } from './chessboardSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -22,7 +21,7 @@ export default function Chessboard({ inputAllowed }: ChessboardProps) {
             else
                 boardView.push(<Tile key={pos} pos={pos} tileColor={(i + j) % 2 ? 'black' : 'white'} highlight={highlights[i][j]} inputAllowed={inputAllowed} />)
         }
-    return <div id='chessboard'>{boardView}</div>;
+    return <div className='boardContainer'><div id='chessboard'>{boardView}</div></div>;
 }
 
 interface TileProps {
