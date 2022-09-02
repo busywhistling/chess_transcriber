@@ -13587,7 +13587,7 @@ function Credits() {
     children: [/* @__PURE__ */ jsxs("a", {
       href: "https://paramjit.org",
       children: [/* @__PURE__ */ jsx("img", {
-        src: "/avatar.jpg",
+        src: "/chess_simulator/avatar.jpg",
         className: "avatar"
       }), " "]
     }), /* @__PURE__ */ jsx("div", {
