@@ -7,7 +7,6 @@ import Chessboard from './features/chessboard/Chessboard'
 import { selectHistory, resetChessboard, loadPGN, loadGame, selectMoves } from './features/chessboard/chessboardSlice';
 
 import './App.scss'
-import 'animate.css';
 import { current } from '@reduxjs/toolkit';
 
 export default function App() {
