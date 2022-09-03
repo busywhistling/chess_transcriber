@@ -14,10 +14,12 @@
     "chess.js": "^0.13.4",
     "dompurify": "^2.3.10",
     "html-react-parser": "^3.0.1",
+    "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.2",
-    "redux-undo": "^1.0.1"
+    "redux-undo": "^1.0.1",
+    "vite-tsconfig-paths": "^3.5.0"
   },
   "devDependencies": {
     "@types/chess.js": "^0.13.2",
