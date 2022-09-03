@@ -1,0 +1,189 @@
+$bodyPadding: 20px;
+$boardHeight: calc(min(100vh - 2 * $bodyPadding, 100vw / 2));
+
+.App {
+  padding: $bodyPadding;
+  min-height: $boardHeight;
+  min-width: calc(100vw - 2 * $bodyPadding);
+  color: #EEEEEE;
+  display: flex;
+  justify-content: space-between;
+
+  @font-face {
+    font-family: "EBGaramond";
+    src: url(/EBGaramond.ttf) format("truetype");
+  }
+
+  font-family: "EBGaramond";
+
+  .leftSidebar {
+    max-width: 25vw;
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .feature {
+      margin: 20px 0;
+      padding: 1rem;
+      border-radius: 20px;
+      backdrop-filter: blur(4px);
+      background: radial-gradient(100% 625% at 0% 0%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.15) 100%);
+    }
+
+    .selected-feature {
+      background: radial-gradient(125.61% 785.06% at -25.61% 6.4%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.28) 99.98%, rgba(255, 255, 255, 0.319531) 99.99%, rgba(255, 255, 255, 0.15) 100%);
+    }
+
+    .credits {
+      margin-top: auto;
+      text-align: left;
+
+      display: flex;
+
+      .avatar {
+        border-radius: 50%;
+        height: 4rem;
+        margin-right: 1rem;
+      }
+
+      .links {
+        display: flex;
+        align-content: center;
+      }
+    }
+  }
+
+  .boardContainer {
+    $chessboardSize: calc($boardHeight - (2 * 15px));
+
+    height: $boardHeight;
+    width: $boardHeight;
+    background-image: url('/wooden_background.jpg');
+    background-size: 100%;
+    border-radius: 20px;
+    margin: 0 20px;
+
+    display: grid;
+    place-content: center;
+
+    #chessboard {
+      height: $chessboardSize;
+      width: $chessboardSize;
+      background-image: url('/chessboard.jpg');
+      background-size: 100%;
+
+      // place-content: center;
+      display: flex;
+      flex-wrap: wrap;
+
+      .tile {
+        width: calc($chessboardSize/ 8);
+        height: calc($chessboardSize/ 8);
+
+        display: grid;
+        place-content: center;
+      }
+
+      .highlight {
+        // box-sizing: border-box; // for inner borders
+        // border: 5px ridge #1a8fc2ea;
+        box-shadow: inset 0 0 2px 99999px rgba(111, 227, 33, 0.3); // for highlighting tiles
+        // position: relative;
+        // z-index: 9999;
+      }
+
+      img {
+        width: 60px;
+      }
+
+      .chesspiece {
+        width: 100px;
+        height: 100px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 70px;
+      }
+    }
+  }
+
+  .rightSidebar {
+    max-width: 25vw;
+
+    font-size: 1.5rem;
+
+
+    fieldset {
+      margin: 20px 0;
+      padding: 1rem;
+      border-radius: 20px;
+      backdrop-filter: blur(4px);
+      background: radial-gradient(100% 625% at 0% 0%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.15) 100%);
+      // background: radial-gradient(125.61% 785.06% at -25.61% 6.4%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.28) 99.98%, rgba(255, 255, 255, 0.319531) 99.99%, rgba(255, 255, 255, 0.15) 100%);
+
+      textarea {
+        font-family: inherit;
+        font-size: inherit;
+        color: inherit;
+        border-radius: 5px;
+        background: radial-gradient(100% 625% at 0% 0%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.15) 100%);
+      }
+
+      button {
+        font-family: inherit;
+        font-size: inherit;
+        color: inherit;
+        margin-top: 1rem;
+        padding: 0 0.5rem;
+        text-align: center;
+        border-radius: 20px;
+        background: radial-gradient(100% 625% at 0% 0%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.15) 100%);
+      }
+    }
+
+    .warning {
+      display: inline-block;
+      margin-left: 2rem;
+      color: rgba(255, 201, 52, 0.941);
+    }
+
+    .interactive-history div {
+      display: inline-block;
+      margin: 0 5px;
+    }
+
+    .interactive-history .current {
+      text-decoration: underline;
+    }
+  }
+
+  a {
+    font-weight: 500;
+    color: #779556;
+    text-decoration: inherit;
+  }
+
+  a:hover {
+    color: #535bf2;
+  }
+
+  @media (prefers-color-scheme: light) {
+    a:hover {
+      color: #747bff;
+    }
+  }
+}
