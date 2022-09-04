@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 // Global imports
 import '@/styles/App.scss'
 import { resetChessboard } from '@/redux/chessboardSlice';
-import { Credits } from '@/features/layout'
+import { Credits } from '@/components/layout'
 
 // Local imports
 
