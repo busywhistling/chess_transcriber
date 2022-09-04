@@ -1,12 +1,12 @@
 // Third-party imports
 import { useState } from 'react';
-import { useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
 // Global imports
 import '@/styles/App.scss'
 import { selectHistory } from '@/redux/chessboardSlice';
-import {Chessboard} from '@/features/chessboard'
-import { LeftSidebar, RightSidebar } from '@/features/layout'
+import { Chessboard } from '@/components/chessboard'
+import { LeftSidebar, RightSidebar } from '@/components/layout'
 
 // Local imports
 
