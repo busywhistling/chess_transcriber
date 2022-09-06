@@ -21,8 +21,8 @@ const Chessboard = ({ inputAllowed }: ChessboardProps) => {
     const highlights = useSelector(selectHighlights);
 
     const getPieceImageFilename = (xCoordinate: number, yCoordinate: number) => (
-        board[xCoordinate][yCoordinate] == null 
-            ? undefined 
+        board[xCoordinate][yCoordinate] == null
+            ? undefined
             : `${board[xCoordinate][yCoordinate].type}_${board[xCoordinate][yCoordinate].color}`
     )
     const isTileHighlighted = (xCoordinate: number, yCoordinate: number) => highlights[xCoordinate][yCoordinate]
@@ -30,7 +30,7 @@ const Chessboard = ({ inputAllowed }: ChessboardProps) => {
     return (
         <div className='boardContainer'>
             <div id='chessboard'>
-                {chessboardPositions.map(({label, xCoordinate, yCoordinate, tileColor}) => (
+                {chessboardPositions.map(({ label, xCoordinate, yCoordinate, tileColor }) => (
                     <Tile
                         key={label}
                         pos={label}

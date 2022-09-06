@@ -27,7 +27,7 @@ const RightSidebar = ({ selectedFeature, notation, setNotation, isWrongNotation,
     const dispatch = useDispatch();
     function testChessnotation(notat: string) {
         console.log(stphistory[currentSelected])
-        let chess = new Chess();
+        const chess = new Chess();
         if (chess.load_pgn(notat)) {
             setIsWrongNotation(false);
             dispatch(loadPGN(notat));
@@ -36,12 +36,12 @@ const RightSidebar = ({ selectedFeature, notation, setNotation, isWrongNotation,
             setIsWrongNotation(true);
     }
     function interactiveHistory() {
-        let newchess = new Chess();
+        const newchess = new Chess();
         newchess.load_pgn(notation)
-        let hist = newchess.history()
+        const hist = newchess.history()
         stphistory = []
         let last = '';
-        let list = []
+        const list = []
         for (let i = 0; i < hist.length; i++) {
             last = last + hist[i] + ' ';
             stphistory.push(last)
@@ -82,5 +82,4 @@ const RightSidebar = ({ selectedFeature, notation, setNotation, isWrongNotation,
     )
 }
 
-
-export default RightSidebar
+export default RightSidebar;
