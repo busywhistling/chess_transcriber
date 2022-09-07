@@ -20,12 +20,14 @@ const Chessboard = ({ inputAllowed }: ChessboardProps) => {
     const board = useSelector(selectBoard);
     const highlights = useSelector(selectHighlights);
 
+    console.log("BOARD \n", board)
     const getPieceImageFilename = (xCoordinate: number, yCoordinate: number) => (
-        board[xCoordinate][yCoordinate] == null
+        board[yCoordinate][xCoordinate] == null
             ? undefined
-            : `${board[xCoordinate][yCoordinate].type}_${board[xCoordinate][yCoordinate].color}`
+            : `${board[yCoordinate][xCoordinate].type}_${board[yCoordinate][xCoordinate].color}`
     )
-    const isTileHighlighted = (xCoordinate: number, yCoordinate: number) => highlights[xCoordinate][yCoordinate]
+    const isTileHighlighted = (xCoordinate: number, yCoordinate: number) => highlights[yCoordinate][xCoordinate]
+    // console.log(chessboardPositions)
 
     return (
         <div className='boardContainer'>

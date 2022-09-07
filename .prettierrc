@@ -5,5 +5,6 @@
 	"proseWrap": "never",
 	"quoteProps": "consistent",
 	"useTabs": true,
-	"semi": true
+	"semi": true,
+	"tabWidth": 4
 }
