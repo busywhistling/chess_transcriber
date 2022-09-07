@@ -11294,7 +11294,7 @@ const Credits = () => /* @__PURE__ */ jsxs("div", {
   children: [/* @__PURE__ */ jsxs("a", {
     href: "https://paramjit.org",
     children: [/* @__PURE__ */ jsx("img", {
-      src: "/avatar.jpg",
+      src: "./avatar.jpg",
       className: "avatar"
     }), " "]
   }), /* @__PURE__ */ jsx("div", {
