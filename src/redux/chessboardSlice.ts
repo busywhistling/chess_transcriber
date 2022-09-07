@@ -8,6 +8,11 @@ import { Chess, Square, Move } from "chess.js";
 
 ////////////////////////////////////////////////////////////////////////////////
 
+// User defined type guard, to ensure move is of type Move before accessing it's 'to' prop
+function isTypeMove(move: string | Move): move is Move {
+	return Object.prototype.hasOwnProperty.call(move, "to");
+}
+
 export const chessboardSlice = createSlice({
 	name: "chessboard",
 
@@ -29,9 +34,12 @@ export const chessboardSlice = createSlice({
 				const movesPossible = state.game.moves({ square: pos, verbose: true });
 				// reset highlighted tiles
 				for (let idx = 0; idx < 8; idx++) state.highlightedTiles[idx].fill(false);
+
 				movesPossible.forEach(move => {
-					const [i, j] = parsePosition(move.to);
-					state.highlightedTiles[7 - j][i] = true;
+					if (isTypeMove(move)) {
+						const [i, j] = parsePosition(move.to);
+						state.highlightedTiles[7 - j][i] = true;
+					}
 				});
 			} else {
 				state.game.move({ from: state.selectedTile as Square, to: pos });
