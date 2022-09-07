@@ -1,0 +1,452 @@
+:root {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-image: url("https://paramjit.org/chess_simulator/wooden_background.jpg");
+  background-size: 100%;
+  backdrop-filter: brightness(0.4);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+@font-face {
+  font-family: "EBGaramond";
+  src: url(https://paramjit.org/chess_simulator/EBGaramond.ttf) format("truetype");
+}@media screen and (min-width: 1000px) {
+  .App {
+    padding: 20px;
+    min-height: min(100vh - 40px, 50vw);
+    min-width: calc(100vw - 40px);
+    color: #eeeeee;
+    display: flex;
+    justify-content: space-between;
+    font-family: "EBGaramond";
+  }
+  @font-face {
+    .App {
+      font-family: "EBGaramond";
+      src: url(https://paramjit.org/chess_simulator/EBGaramond.ttf) format("truetype");
+    }
+  }
+  .App .leftSidebar {
+    max-width: 25vw;
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .App .leftSidebar .title {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+  .App .leftSidebar .subtitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .App .leftSidebar h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .App .leftSidebar .feature {
+    margin: 20px 0;
+    padding: 1rem;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    background: radial-gradient(100% 625% at 0% 0%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.15) 100%);
+  }
+  .App .leftSidebar .selected-feature {
+    background: radial-gradient(125.61% 785.06% at -25.61% 6.4%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.28) 99.98%, rgba(255, 255, 255, 0.319531) 99.99%, rgba(255, 255, 255, 0.15) 100%);
+  }
+  .App .leftSidebar .credits {
+    margin-top: auto;
+    text-align: left;
+    display: flex;
+  }
+  .App .leftSidebar .credits .avatar {
+    border-radius: 50%;
+    height: 4rem;
+    margin-right: 1rem;
+  }
+  .App .leftSidebar .credits .links {
+    display: flex;
+    align-content: center;
+  }
+  .App .boardContainer {
+    height: min(100vh - 40px, 50vw);
+    width: min(100vh - 40px, 50vw);
+    background-image: url("https://paramjit.org/chess_simulator/wooden_background.jpg");
+    background-size: 100%;
+    border-radius: 20px;
+    margin: 0 20px;
+    display: grid;
+    place-content: center;
+  }
+  .App .boardContainer #chessboard {
+    height: calc(min(100vh - 40px, 50vw) - 30px);
+    width: calc(min(100vh - 40px, 50vw) - 30px);
+    background-image: url("https://paramjit.org/chess_simulator/chessboard.jpg");
+    background-size: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .App .boardContainer #chessboard .tile {
+    width: calc((min(100vh - 40px, 50vw) - 30px) / 8);
+    height: calc((min(100vh - 40px, 50vw) - 30px) / 8);
+    display: grid;
+    place-content: center;
+  }
+  .App .boardContainer #chessboard .tile .chesspiece {
+    width: calc((min(100vh - 40px, 50vw) - 30px) / 8);
+    height: calc((min(100vh - 40px, 50vw) - 30px) / 8);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: calc((min(100vh - 40px, 50vw) - 30px) / 8 * 0.7);
+  }
+  .App .boardContainer #chessboard .highlight {
+    box-shadow: inset 0 0 2px 99999px rgba(111, 227, 33, 0.3);
+  }
+  .App .rightSidebar {
+    max-width: 25vw;
+    font-size: 1.5rem;
+  }
+  .App .rightSidebar fieldset {
+    margin: 20px 0;
+    padding: 1rem;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    background: radial-gradient(100% 625% at 0% 0%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.15) 100%);
+  }
+  .App .rightSidebar fieldset textarea {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    width: 90%;
+    max-width: 90%;
+    border-radius: 5px;
+    background: radial-gradient(100% 625% at 0% 0%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.15) 100%);
+  }
+  .App .rightSidebar fieldset button {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    margin-top: 1rem;
+    padding: 0 0.5rem;
+    text-align: center;
+    border-radius: 20px;
+    background: radial-gradient(100% 625% at 0% 0%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.15) 100%);
+  }
+  .App .rightSidebar .warning {
+    display: inline-block;
+    margin-left: 2rem;
+    color: rgba(255, 201, 52, 0.941);
+  }
+  .App .rightSidebar .interactive-history div {
+    display: inline-block;
+    margin: 0 5px;
+  }
+  .App .rightSidebar .interactive-history .current {
+    text-decoration: underline;
+  }
+  .App a {
+    font-weight: 500;
+    color: #779556;
+    text-decoration: inherit;
+  }
+  .App a:hover {
+    color: #535bf2;
+  }
+}
+@media screen and (min-width: 1000px) and (prefers-color-scheme: light) {
+  .App a:hover {
+    color: #747bff;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 1000px) {
+  .App {
+    padding: 10px;
+    min-height: 80vw;
+    min-width: calc(100vw - 20px);
+    color: #eeeeee;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: "EBGaramond";
+  }
+  @font-face {
+    .App {
+      font-family: "EBGaramond";
+      src: url(https://paramjit.org/chess_simulator/EBGaramond.ttf) format("truetype");
+    }
+  }
+  .App .leftSidebar {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .App .leftSidebar .title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  .App .leftSidebar .subtitle {
+    display: none;
+  }
+  .App .leftSidebar h3 {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  .App .leftSidebar .features {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .App .leftSidebar .features .feature {
+    padding: 0 1rem;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    background: radial-gradient(100% 625% at 0% 0%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.15) 100%);
+  }
+  .App .leftSidebar .features .feature-desc {
+    display: none;
+  }
+  .App .leftSidebar .features .selected-feature {
+    background: radial-gradient(125.61% 785.06% at -25.61% 6.4%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.28) 99.98%, rgba(255, 255, 255, 0.319531) 99.99%, rgba(255, 255, 255, 0.15) 100%);
+  }
+  .App .leftSidebar .credits {
+    display: none;
+  }
+  .App .boardContainer {
+    height: 80vw;
+    width: 80vw;
+    background-image: url("https://paramjit.org/chess_simulator/wooden_background.jpg");
+    background-size: 100%;
+    border-radius: 20px;
+    margin: 0 auto;
+    display: grid;
+    place-content: center;
+  }
+  .App .boardContainer #chessboard {
+    height: calc(80vw - 30px);
+    width: calc(80vw - 30px);
+    background-image: url("https://paramjit.org/chess_simulator/chessboard.jpg");
+    background-size: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .App .boardContainer #chessboard .tile {
+    width: calc((80vw - 30px) / 8);
+    height: calc((80vw - 30px) / 8);
+    display: grid;
+    place-content: center;
+  }
+  .App .boardContainer #chessboard .tile .chesspiece {
+    width: calc((80vw - 30px) / 8);
+    height: calc((80vw - 30px) / 8);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: calc((80vw - 30px) / 8 * 0.7);
+  }
+  .App .boardContainer #chessboard .highlight {
+    box-shadow: inset 0 0 2px 99999px rgba(111, 227, 33, 0.3);
+  }
+  .App .rightSidebar {
+    font-size: 1rem;
+  }
+  .App .rightSidebar fieldset {
+    margin: 20px 0;
+    padding: 1rem;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    background: radial-gradient(100% 625% at 0% 0%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.15) 100%);
+  }
+  .App .rightSidebar fieldset textarea {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    width: 90%;
+    max-width: 90%;
+    border-radius: 5px;
+    background: radial-gradient(100% 625% at 0% 0%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.15) 100%);
+  }
+  .App .rightSidebar fieldset button {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    margin-top: 1rem;
+    padding: 0 0.5rem;
+    text-align: center;
+    border-radius: 20px;
+    background: radial-gradient(100% 625% at 0% 0%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.15) 100%);
+  }
+  .App .rightSidebar .warning {
+    display: inline-block;
+    margin-left: 2rem;
+    color: rgba(255, 201, 52, 0.941);
+  }
+  .App .rightSidebar .interactive-history div {
+    display: inline-block;
+    margin: 0 5px;
+  }
+  .App .rightSidebar .interactive-history .current {
+    text-decoration: underline;
+  }
+  .App a {
+    font-weight: 500;
+    color: #779556;
+    text-decoration: inherit;
+  }
+  .App a:hover {
+    color: #535bf2;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 1000px) and (prefers-color-scheme: light) {
+  .App a:hover {
+    color: #747bff;
+  }
+}
+@media screen and (max-width: 600px) {
+  .App {
+    padding: 10px;
+    min-height: 80vw;
+    min-width: calc(100vw - 20px);
+    color: #eeeeee;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: "EBGaramond";
+  }
+  @font-face {
+    .App {
+      font-family: "EBGaramond";
+      src: url(https://paramjit.org/chess_simulator/EBGaramond.ttf) format("truetype");
+    }
+  }
+  .App .leftSidebar {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .App .leftSidebar .title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  .App .leftSidebar .subtitle {
+    display: none;
+  }
+  .App .leftSidebar h3 {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  .App .leftSidebar .features {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .App .leftSidebar .features .feature {
+    padding: 0 1rem;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    background: radial-gradient(100% 625% at 0% 0%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.15) 100%);
+  }
+  .App .leftSidebar .features .feature-desc {
+    display: none;
+  }
+  .App .leftSidebar .features .selected-feature {
+    background: radial-gradient(125.61% 785.06% at -25.61% 6.4%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.28) 99.98%, rgba(255, 255, 255, 0.319531) 99.99%, rgba(255, 255, 255, 0.15) 100%);
+  }
+  .App .leftSidebar .credits {
+    display: none;
+  }
+  .App .boardContainer {
+    height: 80vw;
+    width: 80vw;
+    background-image: url("https://paramjit.org/chess_simulator/wooden_background.jpg");
+    background-size: 100%;
+    border-radius: 20px;
+    margin: 0 auto;
+    display: grid;
+    place-content: center;
+  }
+  .App .boardContainer #chessboard {
+    height: calc(80vw - 30px);
+    width: calc(80vw - 30px);
+    background-image: url("https://paramjit.org/chess_simulator/chessboard.jpg");
+    background-size: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .App .boardContainer #chessboard .tile {
+    width: calc((80vw - 30px) / 8);
+    height: calc((80vw - 30px) / 8);
+    display: grid;
+    place-content: center;
+  }
+  .App .boardContainer #chessboard .tile .chesspiece {
+    width: calc((80vw - 30px) / 8);
+    height: calc((80vw - 30px) / 8);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: calc((80vw - 30px) / 8 * 0.7);
+  }
+  .App .boardContainer #chessboard .highlight {
+    box-shadow: inset 0 0 2px 99999px rgba(111, 227, 33, 0.3);
+  }
+  .App .rightSidebar {
+    font-size: 1rem;
+  }
+  .App .rightSidebar fieldset {
+    margin: 20px 0;
+    padding: 1rem;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    background: radial-gradient(100% 625% at 0% 0%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.15) 100%);
+  }
+  .App .rightSidebar fieldset textarea {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    width: 90%;
+    max-width: 90%;
+    border-radius: 5px;
+    background: radial-gradient(100% 625% at 0% 0%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.15) 100%);
+  }
+  .App .rightSidebar fieldset button {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    margin-top: 1rem;
+    padding: 0 0.5rem;
+    text-align: center;
+    border-radius: 20px;
+    background: radial-gradient(100% 625% at 0% 0%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.15) 100%);
+  }
+  .App .rightSidebar .warning {
+    display: inline-block;
+    margin-left: 2rem;
+    color: rgba(255, 201, 52, 0.941);
+  }
+  .App .rightSidebar .interactive-history div {
+    display: inline-block;
+    margin: 0 5px;
+  }
+  .App .rightSidebar .interactive-history .current {
+    text-decoration: underline;
+  }
+  .App a {
+    font-weight: 500;
+    color: #779556;
+    text-decoration: inherit;
+  }
+  .App a:hover {
+    color: #535bf2;
+  }
+}
+@media screen and (max-width: 600px) and (prefers-color-scheme: light) {
+  .App a:hover {
+    color: #747bff;
+  }
+}
