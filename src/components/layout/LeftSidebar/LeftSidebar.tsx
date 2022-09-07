@@ -12,10 +12,10 @@ import { Credits } from '@/components/layout'
 
 interface LeftSidebarProps {
     selectedFeature: number
-    setSelectedFeature: any
-    setNotation: any
-    setIsWrongNotation: any
-    setCurrentSelected: any
+    setSelectedFeature: (n: number) => void
+    setNotation: (s: string) => void
+    setIsWrongNotation: (b: boolean) => void
+    setCurrentSelected: (n: number) => void
 }
 
 const LeftSidebar = ({ selectedFeature, setSelectedFeature, setNotation, setIsWrongNotation, setCurrentSelected }: LeftSidebarProps) => {

@@ -1,6 +1,6 @@
 // Third-party imports
 import { createSlice } from "@reduxjs/toolkit";
-import { Chess, Square } from "chess.js";
+import { Chess, Square, Move } from "chess.js";
 
 // Global imports
 
@@ -16,16 +16,16 @@ export const chessboardSlice = createSlice({
 		selectedTile: "",
 		highlightedTiles: new Array(8).fill(new Array(8).fill(false)),
 		movesSoFar: "",
-		moved: false,
+		moved: false
 	},
 
 	reducers: {
 		handleMove: (state, action) => {
-			// select the tile, and
-			// highlight the possible moves from this tile
+			// select the tile, and highlight the possible moves from this tile
 			const [pos, highlight] = action.payload;
 			if (!highlight) {
 				state.selectedTile = pos;
+				console.log("pos: ", pos);
 				const movesPossible = state.game.moves({ square: pos, verbose: true });
 				// reset highlighted tiles
 				for (let idx = 0; idx < 8; idx++) state.highlightedTiles[idx].fill(false);
@@ -39,12 +39,12 @@ export const chessboardSlice = createSlice({
 				// FIXME also necessary because components are not being reloaded otherwise for some reason (POSSIBLE BUG in immer.js)
 				for (let idx = 0; idx < 8; idx++) state.highlightedTiles[idx].fill(false);
 				state.movesSoFar = state.game.pgn({
-					max_width: 5,
-					newline_char: "<br />",
+					maxWidth: 5,
+					newline: "<br />"
 				});
 			}
-			// console.log(state.game.ascii());
 		},
+
 		resetChessboard: state => {
 			for (let idx = 0; idx < 8; idx++) state.highlightedTiles[idx].fill(false);
 			state.game = new Chess();
@@ -55,7 +55,7 @@ export const chessboardSlice = createSlice({
 		},
 		loadPGN: (state, action) => {
 			const notation = action.payload;
-			state.game.load_pgn(notation);
+			state.game.loadPgn(notation);
 			state.selectedTile = "";
 			state.highlightedTiles = new Array(8).fill(new Array(8).fill(false));
 			state.movesSoFar = "";
@@ -67,8 +67,8 @@ export const chessboardSlice = createSlice({
 			state.highlightedTiles = new Array(8).fill(new Array(8).fill(false));
 			state.movesSoFar = "";
 			state.moved = false;
-		},
-	},
+		}
+	}
 });
 
 function parsePosition(move: string) {
