@@ -22,8 +22,8 @@ export const chessboardPositions: ChessboardPosition[] = yAxis
 			label: xLabel + yLabel,
 			xCoordinate: xIndex,
 			yCoordinate: yIndex,
-			tileColor: (xIndex + yIndex) % 2 == 0 ? "white" : "black"
-		}))
+			tileColor: (xIndex + yIndex) % 2 == 0 ? "white" : "black",
+		})),
 	)
 	.reduce((arr1, arr2) => [...arr1, ...arr2]);
 console.log(chessboardPositions);

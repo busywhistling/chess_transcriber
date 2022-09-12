@@ -9,7 +9,7 @@ import chessboardReducer from "@/redux/chessboardSlice";
 ////////////////////////////////////////////////////////////////////////////////
 
 export default configureStore({
-  reducer: {
-    chessboard: chessboardReducer,
-  },
+	reducer: {
+		chessboard: chessboardReducer,
+	},
 });

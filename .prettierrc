@@ -6,5 +6,6 @@
 	"quoteProps": "consistent",
 	"useTabs": true,
 	"semi": true,
-	"tabWidth": 4
+	"tabWidth": 4,
+	"trailingComma": "all"
 }

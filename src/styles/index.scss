@@ -7,7 +7,7 @@
 }
 
 body {
-	background-image: url('/wooden_background.jpg');
+	background-image: url("/wooden_background.jpg");
 	background-size: 100%;
 	backdrop-filter: brightness(0.4);
 
@@ -18,6 +18,6 @@ body {
 }
 
 @font-face {
-	font-family: 'EBGaramond';
-	src: url(/EBGaramond.ttf) format('truetype');
+	font-family: "EBGaramond";
+	src: url(/EBGaramond.ttf) format("truetype");
 }
