@@ -21,7 +21,7 @@ export const chessboardSlice = createSlice({
 		selectedTile: "",
 		highlightedTiles: new Array(8).fill(new Array(8).fill(false)),
 		movesSoFar: "",
-		moved: false
+		moved: false,
 	},
 
 	reducers: {
@@ -48,7 +48,7 @@ export const chessboardSlice = createSlice({
 				for (let idx = 0; idx < 8; idx++) state.highlightedTiles[idx].fill(false);
 				state.movesSoFar = state.game.pgn({
 					maxWidth: 5,
-					newline: "<br />"
+					newline: "<br />",
 				});
 			}
 		},
@@ -75,8 +75,8 @@ export const chessboardSlice = createSlice({
 			state.highlightedTiles = new Array(8).fill(new Array(8).fill(false));
 			state.movesSoFar = "";
 			state.moved = false;
-		}
-	}
+		},
+	},
 });
 
 function parsePosition(move: string) {
