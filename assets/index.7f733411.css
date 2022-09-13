@@ -34,45 +34,45 @@ body {
       src: url(https://paramjit.org/chess_simulator/EBGaramond.ttf) format("truetype");
     }
   }
-  .App .leftSidebar {
+  .App .Sidebar {
     max-width: 25vw;
     flex: 1 1 0;
     display: flex;
     flex-direction: column;
   }
-  .App .leftSidebar .title {
+  .App .Sidebar .title {
     font-size: 3rem;
     font-weight: bold;
   }
-  .App .leftSidebar .subtitle {
+  .App .Sidebar .subtitle {
     font-size: 1.5rem;
     font-weight: bold;
   }
-  .App .leftSidebar h3 {
+  .App .Sidebar h3 {
     font-size: 1.5rem;
     font-weight: bold;
   }
-  .App .leftSidebar .feature {
+  .App .Sidebar .feature {
     margin: 20px 0;
     padding: 1rem;
     border-radius: 20px;
     backdrop-filter: blur(4px);
     background: radial-gradient(100% 625% at 0% 0%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.15) 100%);
   }
-  .App .leftSidebar .selected-feature {
+  .App .Sidebar .selected-feature {
     background: radial-gradient(125.61% 785.06% at -25.61% 6.4%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.28) 99.98%, rgba(255, 255, 255, 0.319531) 99.99%, rgba(255, 255, 255, 0.15) 100%);
   }
-  .App .leftSidebar .credits {
+  .App .Sidebar .credits {
     margin-top: auto;
     text-align: left;
     display: flex;
   }
-  .App .leftSidebar .credits .avatar {
+  .App .Sidebar .credits .avatar {
     border-radius: 50%;
     height: 4rem;
     margin-right: 1rem;
   }
-  .App .leftSidebar .credits .links {
+  .App .Sidebar .credits .links {
     display: flex;
     align-content: center;
   }
@@ -183,40 +183,40 @@ body {
       src: url(https://paramjit.org/chess_simulator/EBGaramond.ttf) format("truetype");
     }
   }
-  .App .leftSidebar {
+  .App .Sidebar {
     flex: 1 1 0;
     display: flex;
     flex-direction: column;
   }
-  .App .leftSidebar .title {
+  .App .Sidebar .title {
     font-size: 2rem;
     font-weight: bold;
     text-align: center;
   }
-  .App .leftSidebar .subtitle {
+  .App .Sidebar .subtitle {
     display: none;
   }
-  .App .leftSidebar h3 {
+  .App .Sidebar h3 {
     font-size: 1rem;
     font-weight: bold;
   }
-  .App .leftSidebar .features {
+  .App .Sidebar .features {
     display: flex;
     justify-content: space-evenly;
   }
-  .App .leftSidebar .features .feature {
+  .App .Sidebar .features .feature {
     padding: 0 1rem;
     border-radius: 20px;
     backdrop-filter: blur(4px);
     background: radial-gradient(100% 625% at 0% 0%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.15) 100%);
   }
-  .App .leftSidebar .features .feature-desc {
+  .App .Sidebar .features .feature-desc {
     display: none;
   }
-  .App .leftSidebar .features .selected-feature {
+  .App .Sidebar .features .selected-feature {
     background: radial-gradient(125.61% 785.06% at -25.61% 6.4%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.28) 99.98%, rgba(255, 255, 255, 0.319531) 99.99%, rgba(255, 255, 255, 0.15) 100%);
   }
-  .App .leftSidebar .credits {
+  .App .Sidebar .credits {
     display: none;
   }
   .App .boardContainer {
@@ -325,40 +325,40 @@ body {
       src: url(https://paramjit.org/chess_simulator/EBGaramond.ttf) format("truetype");
     }
   }
-  .App .leftSidebar {
+  .App .Sidebar {
     flex: 1 1 0;
     display: flex;
     flex-direction: column;
   }
-  .App .leftSidebar .title {
+  .App .Sidebar .title {
     font-size: 2rem;
     font-weight: bold;
     text-align: center;
   }
-  .App .leftSidebar .subtitle {
+  .App .Sidebar .subtitle {
     display: none;
   }
-  .App .leftSidebar h3 {
+  .App .Sidebar h3 {
     font-size: 1rem;
     font-weight: bold;
   }
-  .App .leftSidebar .features {
+  .App .Sidebar .features {
     display: flex;
     justify-content: space-evenly;
   }
-  .App .leftSidebar .features .feature {
+  .App .Sidebar .features .feature {
     padding: 0 1rem;
     border-radius: 20px;
     backdrop-filter: blur(4px);
     background: radial-gradient(100% 625% at 0% 0%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.15) 100%);
   }
-  .App .leftSidebar .features .feature-desc {
+  .App .Sidebar .features .feature-desc {
     display: none;
   }
-  .App .leftSidebar .features .selected-feature {
+  .App .Sidebar .features .selected-feature {
     background: radial-gradient(125.61% 785.06% at -25.61% 6.4%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.28) 99.98%, rgba(255, 255, 255, 0.319531) 99.99%, rgba(255, 255, 255, 0.15) 100%);
   }
-  .App .leftSidebar .credits {
+  .App .Sidebar .credits {
     display: none;
   }
   .App .boardContainer {
