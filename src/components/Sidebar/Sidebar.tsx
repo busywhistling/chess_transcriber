@@ -1,33 +1,22 @@
 // Third-party imports
-import { useDispatch } from "react-redux";
 
 // Global imports
 import "@/styles/App.scss";
-import { resetChessboard } from "@/redux/chessboardSlice";
-import { Credits } from "@/components/layout";
+import { Credits } from "@/components";
 
 // Local imports
 
 ////////////////////////////////////////////////////////////////////////////////
 
-interface LeftSidebarProps {
+interface SidebarProps {
 	selectedFeature: number;
 	setSelectedFeature: (n: number) => void;
-	setNotation: (s: string) => void;
-	setIsWrongNotation: (b: boolean) => void;
-	setCurrentSelected: (n: number) => void;
+	setFreshGame: any;
 }
 
-const LeftSidebar = ({
-	selectedFeature,
-	setSelectedFeature,
-	setNotation,
-	setIsWrongNotation,
-	setCurrentSelected,
-}: LeftSidebarProps) => {
-	const dispatch = useDispatch();
+const Sidebar = ({ selectedFeature, setSelectedFeature, setFreshGame }: SidebarProps) => {
 	return (
-		<div className="leftSidebar">
+		<div className="Sidebar">
 			<div>
 				<div className="title">Chess game simulator</div>
 				<div className="subtitle">Select the feature you want to use below.</div>
@@ -37,10 +26,11 @@ const LeftSidebar = ({
 						onClick={() => {
 							if (selectedFeature === 1) {
 								setSelectedFeature(1 - selectedFeature);
-								dispatch(resetChessboard());
-								setNotation("");
-								setIsWrongNotation(false);
-								setCurrentSelected(0);
+								setFreshGame(true);
+								// dispatch(resetChessboard());
+								// setNotation("");
+								// setIsWrongNotation(false);
+								// setCurrentSelected(0);
 							}
 						}}>
 						<h3>Transcribe moves to algebraic notation</h3>
@@ -57,7 +47,8 @@ const LeftSidebar = ({
 						onClick={() => {
 							if (selectedFeature === 0) {
 								setSelectedFeature(1 - selectedFeature);
-								dispatch(resetChessboard());
+								setFreshGame(true);
+								// dispatch(resetChessboard());
 							}
 						}}>
 						<h3>Play recorded notation of a game</h3>
@@ -69,10 +60,9 @@ const LeftSidebar = ({
 					</div>
 				</div>
 			</div>
-
 			<Credits />
 		</div>
 	);
 };
 
-export default LeftSidebar;
+export default Sidebar;

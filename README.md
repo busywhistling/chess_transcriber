@@ -32,3 +32,9 @@ npm install
 npm run dev # to run dev server
 npm run build # to build for production
 ```
+
+### Sample moves to play with
+
+1. e4 d5
+2. exd5 e6
+3. dxe6 Nf6

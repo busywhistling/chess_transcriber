@@ -1,46 +1,31 @@
 // Third-party imports
 import { useState } from "react";
-import { useSelector } from "react-redux";
 
 // Global imports
 import "@/styles/App.scss";
-import { selectHistory } from "@/redux/chessboardSlice";
-import { Chessboard } from "@/components/chessboard";
-import { LeftSidebar, RightSidebar } from "@/components/layout";
+import { Sidebar, BoardToNotation, NotationToBoard } from "@/components";
 
 // Local imports
 
 ////////////////////////////////////////////////////////////////////////////////
 
 const App = () => {
-	const hist = useSelector(selectHistory);
-
 	// const to store 0 or 1 depending on whether transcription or recording feature is selected
 	const [selectedFeature, setSelectedFeature] = useState(0);
-
-	const [notation, setNotation] = useState("");
-	const [isWrongNotation, setIsWrongNotation] = useState(false);
-	const [currentSelected, setCurrentSelected] = useState(hist.length - 1);
+	const [freshGame, setFreshGame] = useState(false);
 
 	return (
 		<div className="App">
-			<LeftSidebar
+			<Sidebar
 				selectedFeature={selectedFeature}
 				setSelectedFeature={setSelectedFeature}
-				setNotation={setNotation}
-				setIsWrongNotation={setIsWrongNotation}
-				setCurrentSelected={setCurrentSelected}
+				setFreshGame={setFreshGame}
 			/>
-			<Chessboard inputAllowed={selectedFeature === 0} />
-			<RightSidebar
-				selectedFeature={selectedFeature}
-				notation={notation}
-				setNotation={setNotation}
-				isWrongNotation={isWrongNotation}
-				setIsWrongNotation={setIsWrongNotation}
-				currentSelected={currentSelected}
-				setCurrentSelected={setCurrentSelected}
-			/>
+			{selectedFeature === 0 ? (
+				<BoardToNotation freshGame={freshGame} setFreshGame={setFreshGame} />
+			) : (
+				<NotationToBoard freshGame={freshGame} setFreshGame={setFreshGame} />
+			)}
 		</div>
 	);
 };
