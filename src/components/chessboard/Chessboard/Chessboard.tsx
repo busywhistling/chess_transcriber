@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { selectBoard, selectHighlights } from "@/redux/chessboardSlice";
 
 // Local imports
-import Tile from "../Tile";
+import Tile from "@/components/chessboard/Tile";
 import { chessboardPositions } from "./chessboardPosition";
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -20,25 +20,24 @@ const Chessboard = ({ inputAllowed }: ChessboardProps) => {
 	const board = useSelector(selectBoard);
 	const highlights = useSelector(selectHighlights);
 
-	console.log("BOARD \n", board);
 	const getPieceImageFilename = (xCoordinate: number, yCoordinate: number) =>
-		board[yCoordinate][xCoordinate] == null
+		board[yCoordinate][xCoordinate] === null
 			? undefined
 			: `${board[yCoordinate][xCoordinate].type}_${board[yCoordinate][xCoordinate].color}`;
 	const isTileHighlighted = (xCoordinate: number, yCoordinate: number) =>
 		highlights[yCoordinate][xCoordinate];
-	// console.log(chessboardPositions)
 
 	return (
+		// container div to show wooden border
 		<div className="boardContainer">
 			<div id="chessboard">
 				{chessboardPositions.map(({ label, xCoordinate, yCoordinate, tileColor }) => (
 					<Tile
 						key={label}
-						pos={label}
+						position={label}
 						piece={getPieceImageFilename(xCoordinate, yCoordinate)}
 						tileColor={tileColor}
-						highlight={isTileHighlighted(xCoordinate, yCoordinate)}
+						isHighlighted={isTileHighlighted(xCoordinate, yCoordinate)}
 						inputAllowed={inputAllowed}
 					/>
 				))}
