@@ -17,7 +17,7 @@
 
 		font-family: "EBGaramond";
 
-		.leftSidebar {
+		.Sidebar {
 			max-width: 25vw;
 			flex: 1 1 0;
 			display: flex;
@@ -79,11 +79,16 @@
 			}
 		}
 
+		.simulator {
+			display: flex;
+			justify-content: space-between;
+		}
+
 		.boardContainer {
-			$chessboardSize: calc($boardHeight - (2 * 15px));
+			$chessboardSize: calc($boardHeight - (2 * 15px) - 110px);
 
 			height: $boardHeight;
-			width: $boardHeight;
+			width: calc($boardHeight - 100px);
 			background-image: url("/wooden_background.jpg");
 			background-size: 100%;
 			border-radius: 20px;
@@ -91,6 +96,42 @@
 
 			display: grid;
 			place-content: center;
+
+			#capturedWPieces,
+			#capturedBPieces {
+				height: 55px;
+				width: $chessboardSize;
+				display: flex;
+				backdrop-filter: blur(4px);
+				background: radial-gradient(
+					100% 625% at 0% 0%,
+					rgba(255, 255, 255, 0.2) 0%,
+					rgba(255, 255, 255, 0.15) 100%
+				);
+				.fallenPieceTile {
+					height: calc($chessboardSize/16);
+					width: calc($chessboardSize/16);
+					margin-top: 5px;
+
+					display: grid;
+					place-content: center;
+
+					z-index: 9999;
+					.fallenPiece {
+						width: calc($chessboardSize/16);
+						height: calc($chessboardSize/16);
+						background-repeat: no-repeat;
+						background-position: center;
+						background-size: calc($chessboardSize/16);
+					}
+				}
+			}
+			#capturedBPieces {
+				border-radius: 0 0 20px 20px;
+			}
+			#capturedWPieces {
+				border-radius: 20px 20px 0 0;
+			}
 
 			#chessboard {
 				height: $chessboardSize;
@@ -181,13 +222,45 @@
 				color: rgba(255, 201, 52, 0.941);
 			}
 
+			.lastmove {
+				margin: 0.5rem;
+				padding: 0 0.5rem;
+				text-align: center;
+				vertical-align: middle;
+				border-radius: 5px;
+				backdrop-filter: blur(4px);
+				background: radial-gradient(
+					100% 625% at 0% 0%,
+					rgba(255, 255, 255, 0.2) 0%,
+					rgba(255, 255, 255, 0.15) 100%
+				);
+
+				display: flex;
+				p {
+					margin: 0;
+				}
+				.movingPiece {
+					width: 1.5rem;
+					height: 1.5rem;
+					background-repeat: no-repeat;
+					background-position: center;
+					background-size: 1.5rem;
+				}
+			}
+
 			.interactive-history div {
 				display: inline-block;
-				margin: 0 5px;
 			}
 
 			.interactive-history .current {
 				text-decoration: underline;
+				background: radial-gradient(
+					125.61% 785.06% at -25.61% 6.4%,
+					rgba(255, 255, 255, 0.55) 0%,
+					rgba(255, 255, 255, 0.28) 99.98%,
+					rgba(255, 255, 255, 0.319531) 99.99%,
+					rgba(255, 255, 255, 0.15) 100%
+				);
 			}
 		}
 
@@ -229,7 +302,7 @@
 
 		font-family: "EBGaramond";
 
-		.leftSidebar {
+		.Sidebar {
 			// max-width: 25vw;
 			flex: 1 1 0;
 			display: flex;
@@ -448,7 +521,7 @@
 
 		font-family: "EBGaramond";
 
-		.leftSidebar {
+		.Sidebar {
 			// max-width: 25vw;
 			flex: 1 1 0;
 			display: flex;

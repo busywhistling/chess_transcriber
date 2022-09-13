@@ -26,4 +26,3 @@ export const chessboardPositions: ChessboardPosition[] = yAxis
 		})),
 	)
 	.reduce((arr1, arr2) => [...arr1, ...arr2]);
-console.log(chessboardPositions);

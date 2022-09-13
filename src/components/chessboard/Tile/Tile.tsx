@@ -1,8 +1,8 @@
 // Third-party imports
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 
 // Global imports
-import { handleMove } from "@/redux/chessboardSlice";
+// import { handleMove } from "@/redux/chessboardSlice";
 
 // Local imports
 
@@ -10,19 +10,18 @@ import { handleMove } from "@/redux/chessboardSlice";
 
 export interface TileProps {
 	position: string;
-	piece?: string;
+	piece: string | undefined;
 	tileColor: string;
-	isHighlighted?: boolean;
-	inputAllowed: boolean;
+	isHighlighted: boolean;
+	handleMove?: any;
 }
 
-const Tile = ({ position, piece, tileColor, isHighlighted, inputAllowed }: TileProps) => {
-	const dispatch = useDispatch();
+const Tile = ({ position, piece, tileColor, isHighlighted, handleMove }: TileProps) => {
 	return (
 		<div
 			className={"tile " + tileColor + "-tile " + (isHighlighted ? "highlight" : "")}
 			onClick={() => {
-				if (inputAllowed) dispatch(handleMove([position, isHighlighted]));
+				handleMove && handleMove(position, isHighlighted);
 			}}>
 			{piece && (
 				<div style={{ backgroundImage: `url(${piece}.png)` }} className="chesspiece"></div>
