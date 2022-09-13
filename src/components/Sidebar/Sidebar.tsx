@@ -11,7 +11,7 @@ import { Credits } from "@/components";
 interface SidebarProps {
 	selectedFeature: number;
 	setSelectedFeature: (n: number) => void;
-	setFreshGame: any;
+	setFreshGame: (b: boolean) => void;
 }
 
 const Sidebar = ({ selectedFeature, setSelectedFeature, setFreshGame }: SidebarProps) => {
