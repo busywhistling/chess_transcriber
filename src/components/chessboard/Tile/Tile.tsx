@@ -9,20 +9,20 @@ import { handleMove } from "@/redux/chessboardSlice";
 ////////////////////////////////////////////////////////////////////////////////
 
 export interface TileProps {
-	pos: string;
+	position: string;
 	piece?: string;
 	tileColor: string;
-	highlight?: boolean;
+	isHighlighted?: boolean;
 	inputAllowed: boolean;
 }
 
-const Tile = ({ pos, piece, tileColor, highlight, inputAllowed }: TileProps) => {
+const Tile = ({ position, piece, tileColor, isHighlighted, inputAllowed }: TileProps) => {
 	const dispatch = useDispatch();
 	return (
 		<div
-			className={"tile " + tileColor + "-tile " + (highlight ? "highlight" : "")}
+			className={"tile " + tileColor + "-tile " + (isHighlighted ? "highlight" : "")}
 			onClick={() => {
-				if (inputAllowed) dispatch(handleMove([pos, highlight]));
+				if (inputAllowed) dispatch(handleMove([position, isHighlighted]));
 			}}>
 			{piece && (
 				<div style={{ backgroundImage: `url(${piece}.png)` }} className="chesspiece"></div>
