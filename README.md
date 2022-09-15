@@ -4,18 +4,18 @@ A simulator React app to play a game of chess and transcribe the moves to the St
 
 ### Tech
 
--   [React](https://reactjs.org/) for the frontend UI & [Redux](https://redux.js.org/) for chessboard state management
+-   [React](https://reactjs.org/) for the frontend UI ~~& [Redux](https://redux.js.org/) for chessboard state management~~ (rearchitected app to not require Redux)
 -   [vite](https://vitejs.dev/) & [npm](https://www.npmjs.com/) as development tools
 -   HTML, CSS, TS as the principal programming/markup languages
 
 ### Special lessons
 
--   Using React hooks, managing state (with lifts to parent components when necessary), using Redux for the more complicated chessboard
+-   Using React hooks, managing state (with lifts to parent components when necessary), ~~using Redux for the more complicated chessboard~~
 -   Integrating external libraries like [chess.js](https://github.com/jhlywa/chess.js) (mature library written over 10 years) which is responsible for the underlying chess logic
 
 ### Directory structure & project architecture
 
--   `src` contains the main source tree, with subfolders `redux` containing the Redux store logic and `components` containing the sidebars & the main Chessboard component.
+-   `src` contains the main source tree, with subfolders ~~`redux` containing the Redux store logic and~~ `components` containing the sidebars & the main Chessboard component.
 -   This project is architected as a standard React + Typescript web app.
 
 ### Future extensions with minimal effort
