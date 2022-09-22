@@ -12,6 +12,7 @@ A simulator React app to play a game of chess and transcribe the moves to the St
 
 -   Using React hooks, managing state (with lifts to parent components when necessary), ~~using Redux for the more complicated chessboard~~
 -   Integrating external libraries like [chess.js](https://github.com/jhlywa/chess.js) (mature library written over 10 years) which is responsible for the underlying chess logic
+-   Setting up a CI/CD pipeline for building, testing & deploying app.
 
 ### Directory structure & project architecture
 
