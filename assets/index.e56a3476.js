@@ -17517,12 +17517,13 @@ const Sidebar = ({
     }), /* @__PURE__ */ jsx(Credits, {})]
   });
 };
+const avatarUrl = "https://paramjit.org/chess_simulator/assets/avatar.1146002f.jpg";
 const Credits = () => /* @__PURE__ */ jsxs("div", {
   className: "credits",
   children: [/* @__PURE__ */ jsxs("a", {
     href: "https://paramjit.org",
     children: [/* @__PURE__ */ jsx("img", {
-      src: "./avatar.jpg",
+      src: avatarUrl,
       className: "avatar"
     }), " "]
   }), /* @__PURE__ */ jsx("div", {
