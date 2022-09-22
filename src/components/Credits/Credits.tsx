@@ -1,6 +1,7 @@
 // Third-party imports
 
 // Global imports
+import avatarUrl from '@/assets/avatar.jpg'
 
 // Local imports
 
@@ -9,7 +10,7 @@
 const Credits = () => (
 	<div className="credits">
 		<a href="https://paramjit.org">
-			<img src="/avatar.jpg" className="avatar" />{" "}
+			<img src={avatarUrl} className="avatar" />{" "}
 		</a>
 		<div className="links">
 			<p>
