@@ -21,7 +21,7 @@ const BoardToNotation = ({ freshGame, setFreshGame }: BoardToNotationProps) => {
 	const [game, setGame] = useState(new Chess());
 	const [step, setStep] = useState(0); // FIXME: for some reason a dummy step update is required, to force state update here
 	return (
-		<div className="simulator">
+		<div className="transcriber">
 			<Chessboard
 				game={game}
 				setGame={setGame}

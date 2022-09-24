@@ -1,6 +1,6 @@
-## Chess Simulator
+## Chess Transcriber
 
-A simulator React app to play a game of chess and transcribe the moves to the Standard Algebraic Notation used by FIDE. Alternatively, one can input SAN for a given game and walk through the moves observing the corresponding board positions.
+A transcriber React app to play a game of chess and transcribe the moves to the Standard Algebraic Notation used by FIDE. Alternatively, one can input SAN for a given game and walk through the moves observing the corresponding board positions.
 
 ### Tech
 

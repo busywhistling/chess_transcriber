@@ -80,7 +80,7 @@ const NotationToBoard = ({ freshGame, setFreshGame }: NotationToBoardProps) => {
 	};
 
 	return (
-		<div className="simulator">
+		<div className="transcriber">
 			<Chessboard
 				game={game}
 				setGame={setGame}
