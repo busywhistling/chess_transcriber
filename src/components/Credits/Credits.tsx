@@ -17,8 +17,8 @@ const Credits = () => (
 				By <a href="https://paramjit.org">Paramjit</a> with ❤️
 				<br />
 				explore the source on{" "}
-				<a href="https://github.com/busywhistling/chess_simulator">github</a> or{" "}
-				<a href="https://codesandbox.io/p/github/busywhistling/chess_simulator">
+				<a href="https://github.com/busywhistling/chess_transcriber">github</a> or{" "}
+				<a href="https://codesandbox.io/p/github/busywhistling/chess_transcriber">
 					codesandbox
 				</a>
 				.

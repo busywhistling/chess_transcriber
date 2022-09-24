@@ -6,7 +6,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 // FIXME: Disabled minify due to issues processing scss
 export default defineConfig({
 	plugins: [react(), tsconfigPaths()],
-	base: "https://paramjit.org/chess_simulator/",
+	base: "https://paramjit.org/chess_transcriber/",
 	build: {
 		minify: false,
 	},

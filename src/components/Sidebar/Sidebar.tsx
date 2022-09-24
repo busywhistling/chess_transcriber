@@ -18,7 +18,7 @@ const Sidebar = ({ selectedFeature, setSelectedFeature, setFreshGame }: SidebarP
 	return (
 		<div className="Sidebar">
 			<div>
-				<div className="title">Chess game simulator</div>
+				<div className="title">Chess transcriber</div>
 				<div className="subtitle">Select the feature you want to use below.</div>
 				<div className="features">
 					<div
