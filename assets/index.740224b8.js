@@ -17338,7 +17338,7 @@ const BoardToNotation = ({
   const [game, setGame] = react.exports.useState(new chess.Chess());
   const [step, setStep] = react.exports.useState(0);
   return /* @__PURE__ */ jsxs("div", {
-    className: "simulator",
+    className: "transcriber",
     children: [/* @__PURE__ */ jsx(Chessboard, {
       game,
       setGame,
@@ -17428,7 +17428,7 @@ const NotationToBoard = ({
     });
   };
   return /* @__PURE__ */ jsxs("div", {
-    className: "simulator",
+    className: "transcriber",
     children: [/* @__PURE__ */ jsx(Chessboard, {
       game,
       setGame,
@@ -17478,7 +17478,7 @@ const Sidebar = ({
     children: [/* @__PURE__ */ jsxs("div", {
       children: [/* @__PURE__ */ jsx("div", {
         className: "title",
-        children: "Chess game simulator"
+        children: "Chess transcriber"
       }), /* @__PURE__ */ jsx("div", {
         className: "subtitle",
         children: "Select the feature you want to use below."
@@ -17517,7 +17517,7 @@ const Sidebar = ({
     }), /* @__PURE__ */ jsx(Credits, {})]
   });
 };
-const avatarUrl = "https://paramjit.org/chess_simulator/assets/avatar.1146002f.jpg";
+const avatarUrl = "https://paramjit.org/chess_transcriber/assets/avatar.1146002f.jpg";
 const Credits = () => /* @__PURE__ */ jsxs("div", {
   className: "credits",
   children: [/* @__PURE__ */ jsxs("a", {
@@ -17533,10 +17533,10 @@ const Credits = () => /* @__PURE__ */ jsxs("div", {
         href: "https://paramjit.org",
         children: "Paramjit"
       }), " with \u2764\uFE0F", /* @__PURE__ */ jsx("br", {}), "explore the source on", " ", /* @__PURE__ */ jsx("a", {
-        href: "https://github.com/busywhistling/chess_simulator",
+        href: "https://github.com/busywhistling/chess_transcriber",
         children: "github"
       }), " or", " ", /* @__PURE__ */ jsx("a", {
-        href: "https://codesandbox.io/p/github/busywhistling/chess_simulator",
+        href: "https://codesandbox.io/p/github/busywhistling/chess_transcriber",
         children: "codesandbox"
       }), "."]
     })
