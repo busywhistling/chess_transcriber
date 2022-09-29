@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "jest --passWithNoTests; playwright test",
+    "test": "jest --passWithNoTests --maxWorkers=1; playwright test",
     "lint": "eslint . --ext .ts,.tsx",
     "prepare": "husky install"
   },
