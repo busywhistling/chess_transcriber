@@ -24,15 +24,24 @@ jobs:
       with:
         version: 7
     
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Setup Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'pnpm'
-    - run: pnpm install
-    - run: pnpm run build
-    - run: pnpm test
+
+    - name: Install node packages
+      run: pnpm install
+
+    - name: Setup Playwright browsers
+      run: pnpm playwright install --with-deps
+
+    - name: Run unit & e2e tests
+      run: pnpm test
     
+    - name: Build project
+      run: pnpm run build
+
     - name: Deploy to github pages
       uses: peaceiris/actions-gh-pages@v3
       if: github.ref == 'refs/heads/main'

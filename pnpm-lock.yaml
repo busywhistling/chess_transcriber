@@ -34,6 +34,7 @@ specifiers:
   jest: 29.1.1
   jest-environment-jsdom: 29.1.1
   npm-check-updates: 16.3.3
+  playwright: 1.26.1
   prettier: 2.7.1
   react: 18.2.0
   react-dom: 18.2.0
@@ -82,6 +83,7 @@ devDependencies:
   jest: 29.1.1_sqkfeep4fedqlsauso44ecfrx4
   jest-environment-jsdom: 29.1.1
   npm-check-updates: 16.3.3
+  playwright: 1.26.1
   prettier: 2.7.1
   sass: 1.55.0
   ts-jest: 29.0.3_jufvdtndqxutuniyhglngh7btq
@@ -6371,6 +6373,15 @@ packages:
     resolution: {integrity: sha512-hzFchhhxnEiPc4qVPs9q2ZR+5eKNifY2hQDHtg1HnTTUuphYCBP8ZRb2si+B1TR7BHirgXaPi48LIye5SgrLAA==}
     engines: {node: '>=14'}
     hasBin: true
+    dev: true
+
+  /playwright/1.26.1:
+    resolution: {integrity: sha512-WQmEdCgYYe8jOEkhkW9QLcK0PB+w1RZztBLYIT10MEEsENYg251cU0IzebDINreQsUt+HCwwRhtdz4weH9ICcQ==}
+    engines: {node: '>=14'}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      playwright-core: 1.26.1
     dev: true
 
   /popmotion/11.0.5:
