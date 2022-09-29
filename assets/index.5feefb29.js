@@ -11931,7 +11931,7 @@ const transformProps = new Set(transformPropOrder);
 function isForcedMotionValue(key, { layout, layoutId }) {
   return transformProps.has(key) || key.startsWith("origin") || (layout || layoutId !== void 0) && (!!scaleCorrectors[key] || key === "opacity");
 }
-const isMotionValue = (value) => value === void 0 ? false : !!value.getVelocity;
+const isMotionValue = (value) => !!(value === null || value === void 0 ? void 0 : value.getVelocity);
 const translateAlias = {
   x: "translateX",
   y: "translateY",
@@ -12220,10 +12220,12 @@ function buildHTMLStyles(state, latestValues, options, transformTemplate) {
       style[key] = valueAsType;
     }
   }
-  if (hasTransform2 || transformTemplate) {
-    style.transform = buildTransform(state, options, transformIsNone, transformTemplate);
-  } else if (!latestValues.transform && style.transform) {
-    style.transform = "none";
+  if (!latestValues.transform) {
+    if (hasTransform2 || transformTemplate) {
+      style.transform = buildTransform(state, options, transformIsNone, transformTemplate);
+    } else if (style.transform) {
+      style.transform = "none";
+    }
   }
   if (hasTransformOrigin) {
     const { originX = "50%", originY = "50%", originZ = 0 } = transformOrigin;
@@ -12290,6 +12292,7 @@ const inViewProps = [
 const validMotionProps = /* @__PURE__ */ new Set([
   "initial",
   "style",
+  "values",
   "variants",
   "transition",
   "transformTemplate",
@@ -14078,7 +14081,7 @@ const isFloat = (value) => {
 };
 class MotionValue {
   constructor(init) {
-    this.version = "7.3.4";
+    this.version = "7.5.0";
     this.timeDelta = 0;
     this.lastUpdated = 0;
     this.updateSubscribers = new SubscriptionManager();
@@ -15364,6 +15367,13 @@ const visualElement = ({ treeType = "", build, getBaseTarget, makeTargetAnimatab
       }
     }
   }
+  if (props.values) {
+    for (const key in props.values) {
+      if (latestValues[key] !== void 0) {
+        props.values[key].set(latestValues[key]);
+      }
+    }
+  }
   const isControllingVariants$1 = isControllingVariants(props);
   const isVariantNode$1 = isVariantNode(props);
   const element = {
@@ -15485,6 +15495,9 @@ const visualElement = ({ treeType = "", build, getBaseTarget, makeTargetAnimatab
     },
     hasValue: (key) => values.has(key),
     getValue(key, defaultValue) {
+      if (props.values && props.values[key]) {
+        return props.values[key];
+      }
       let value = values.get(key);
       if (value === void 0 && defaultValue !== void 0) {
         value = motionValue(defaultValue);
@@ -16167,7 +16180,7 @@ function boxEquals(a2, b2) {
 function aspectRatio(box) {
   return calcLength(box.x) / calcLength(box.y);
 }
-function isCloseTo(a2, b2, max = 0.01) {
+function isCloseTo(a2, b2, max = 0.1) {
   return distance(a2, b2) <= max;
 }
 class NodeStack {
@@ -17153,7 +17166,7 @@ function roundBox(box) {
   roundAxis(box.y);
 }
 function shouldAnimatePositionOnly(animationType, snapshot, layout) {
-  return animationType === "position" || animationType === "preserve-aspect" && !isCloseTo(aspectRatio(snapshot), aspectRatio(layout));
+  return animationType === "position" || animationType === "preserve-aspect" && !isCloseTo(aspectRatio(snapshot), aspectRatio(layout), 0.2);
 }
 const DocumentProjectionNode = createProjectionNode({
   attachResizeListener: (ref, notify) => addDomEvent(ref, "resize", notify),
