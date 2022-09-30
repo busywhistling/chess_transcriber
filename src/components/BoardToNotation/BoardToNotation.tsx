@@ -33,8 +33,7 @@ const BoardToNotation = ({ freshGame, setFreshGame }: BoardToNotationProps) => {
 			/>
 			<div className="rightSidebar">
 				<motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-					Below you can find the algebraic notation incrementally being added for your
-					moves.
+					Move some pieces on the left to incrementally generate algebraic notation. Click on a piece to highlight valid moves.
 				</motion.p>
 				<div className="chess-moves">
 					{parse(game.pgn({ maxWidth: 5, newline: "<br />" }))}

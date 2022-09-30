@@ -14,14 +14,13 @@ const Credits = () => (
 		</a>
 		<div className="links">
 			<p>
-				By <a href="https://paramjit.org">Paramjit</a> with ❤️
+				Made by <a href="https://paramjit.org">Paramjit</a> with ♡
 				<br />
-				explore the source on{" "}
+				source on{" "}
 				<a href="https://github.com/busywhistling/chess_transcriber">github</a> or{" "}
 				<a href="https://codesandbox.io/p/github/busywhistling/chess_transcriber">
 					codesandbox
 				</a>
-				.
 			</p>
 		</div>
 	</div>
