@@ -1,10 +1,13 @@
+// desktop & laptop
 @media screen and (min-width: 1000px) {
-	$bodyPadding: 20px;
+	$bodyPadding: 10px;
 	$boardHeight: calc(min(100vh - 2 * $bodyPadding, 100vw / 2));
+	$boardWidth: $boardHeight;
+	$sidebarWidth: calc((100vw - $boardWidth) / 2);
 
 	.App {
 		padding: $bodyPadding;
-		min-height: $boardHeight;
+		min-height: calc(100vh - 2 * $bodyPadding);
 		min-width: calc(100vw - 2 * $bodyPadding);
 		color: #eeeeee;
 		display: flex;
@@ -15,32 +18,30 @@
 			src: url(/EBGaramond.ttf) format("truetype");
 		}
 
-		font-family: "EBGaramond";
+		font-family: Cantarell, sans-serif;
 
 		.Sidebar {
-			max-width: 25vw;
+			max-width: $sidebarWidth;
 			flex: 1 1 0;
 			display: flex;
 			flex-direction: column;
 
 			.title {
+				font-family: "EBGaramond";
 				font-size: 3rem;
 				font-weight: bold;
+				text-align: center;
 			}
 
 			.subtitle {
-				font-size: 1.5rem;
+				font-family: "EBGaramond";
+				font-size: 1.2rem;
 				font-weight: bold;
+				text-align: center;
 			}
-
-			h3 {
-				font-size: 1.5rem;
-				font-weight: bold;
-			}
-
 			.feature {
-				margin: 20px 0;
-				padding: 1rem;
+				margin: 15px 0;
+				padding: 2px 0.8rem;
 				border-radius: 20px;
 				backdrop-filter: blur(4px);
 				background: radial-gradient(
@@ -48,6 +49,26 @@
 					rgba(255, 255, 255, 0.2) 0%,
 					rgba(255, 255, 255, 0.15) 100%
 				);
+
+				transition: all 0.2s ease-in-out;
+
+				h3 {
+					font-size: 1rem;
+					font-weight: bold;
+					text-align: center;
+					margin: 0;
+					margin-top: 0.5rem;
+				}
+
+				p {
+					font-size: 0.9rem;
+					text-align: justify;
+					margin: 0.5rem 0;
+				}
+			}
+
+			.feature:hover {
+				transform: scale(1.02);
 			}
 
 			.selected-feature {
@@ -63,18 +84,21 @@
 			.credits {
 				margin-top: auto;
 				text-align: left;
-
+				font-size: 0.9rem;
 				display: flex;
 
 				.avatar {
 					border-radius: 50%;
-					height: 4rem;
-					margin-right: 1rem;
+					height: 3rem;
+					margin-right: 0.5rem;
 				}
 
 				.links {
 					display: flex;
 					align-content: center;
+					p {
+						margin: auto 0;
+					}
 				}
 			}
 		}
@@ -82,99 +106,106 @@
 		.transcriber {
 			display: flex;
 			justify-content: space-between;
-		}
 
-		.boardContainer {
-			$chessboardSize: calc($boardHeight - (2 * 15px) - 110px);
-
-			height: $boardHeight;
-			width: calc($boardHeight - 100px);
-			background-image: url("/wooden_background.jpg");
-			background-size: 100%;
-			border-radius: 20px;
-			margin: 0 20px;
-
-			display: grid;
-			place-content: center;
-
-			#capturedWPieces,
-			#capturedBPieces {
-				height: 55px;
-				width: $chessboardSize;
-				display: flex;
-				backdrop-filter: blur(4px);
-				background: radial-gradient(
-					100% 625% at 0% 0%,
-					rgba(255, 255, 255, 0.2) 0%,
-					rgba(255, 255, 255, 0.15) 100%
+			.boardContainer {
+				$borderSize: 8px;
+				$capturedPiecesBarHeight: 2.5rem;
+				$chessboardSize: calc(
+					$boardHeight - (2 * $borderSize) - (2 * $capturedPiecesBarHeight)
 				);
-				.fallenPieceTile {
-					height: calc($chessboardSize/16);
-					width: calc($chessboardSize/16);
-					margin-top: 5px;
 
-					display: grid;
-					place-content: center;
+				height: $boardHeight;
+				width: calc($chessboardSize + (2 * $borderSize));
+				background-image: url("/wooden_background.jpg");
+				background-size: 100%;
+				border-radius: 20px;
+				margin: 0 20px;
 
-					z-index: 9999;
-					.fallenPiece {
-						width: calc($chessboardSize/16);
+				display: grid;
+				place-content: center;
+
+				#capturedWPieces,
+				#capturedBPieces {
+					height: $capturedPiecesBarHeight;
+					width: $chessboardSize;
+					display: flex;
+					backdrop-filter: blur(4px);
+					background: radial-gradient(
+						100% 625% at 0% 0%,
+						rgba(255, 255, 255, 0.2) 0%,
+						rgba(255, 255, 255, 0.15) 100%
+					);
+					.fallenPieceTile {
 						height: calc($chessboardSize/16);
-						background-repeat: no-repeat;
-						background-position: center;
-						background-size: calc($chessboardSize/16);
+						width: calc($chessboardSize/16);
+						margin-top: 5px;
+
+						display: grid;
+						place-content: center;
+
+						z-index: 9999;
+						.fallenPiece {
+							width: calc($chessboardSize/16);
+							height: calc($chessboardSize/16);
+							background-repeat: no-repeat;
+							background-position: center;
+							background-size: calc($chessboardSize/16);
+						}
 					}
 				}
-			}
-			#capturedBPieces {
-				border-radius: 0 0 20px 20px;
-			}
-			#capturedWPieces {
-				border-radius: 20px 20px 0 0;
-			}
+				#capturedBPieces {
+					border-radius: 0 0 15px 15px;
+				}
+				#capturedWPieces {
+					border-radius: 15px 15px 0 0;
+				}
 
-			#chessboard {
-				height: $chessboardSize;
-				width: $chessboardSize;
-				background-image: url("/chessboard.jpg");
-				background-size: 100%;
+				#chessboard {
+					height: $chessboardSize;
+					width: $chessboardSize;
+					background-image: url("/chessboard.jpg");
+					background-size: 100%;
 
-				// place-content: center;
-				display: flex;
-				flex-wrap: wrap;
+					display: flex;
+					flex-wrap: wrap;
 
-				.tile {
-					width: calc($chessboardSize/ 8);
-					height: calc($chessboardSize/ 8);
-
-					display: grid;
-					place-content: center;
-
-					.chesspiece {
+					.tile {
 						width: calc($chessboardSize/ 8);
 						height: calc($chessboardSize/ 8);
-						background-repeat: no-repeat;
-						background-position: center;
-						background-size: calc($chessboardSize/ 8 * 0.7);
-					}
-				}
 
-				.highlight {
-					box-shadow: inset 0 0 2px 99999px rgba(111, 227, 33, 0.3); // for highlighting tiles
-					// box-sizing: border-box; // for inner borders
-					// border: 5px ridge #1a8fc2ea;
-					// position: relative;
-					// z-index: 9999;
+						display: grid;
+						place-content: center;
+
+						.chesspiece {
+							width: calc($chessboardSize/ 8);
+							height: calc($chessboardSize/ 8);
+							background-repeat: no-repeat;
+							background-position: center;
+							background-size: calc($chessboardSize/ 8 * 0.7);
+
+							transition: all 0.1s ease-in-out;
+						}
+						.chesspiece:hover {
+							transform: scale(1.3);
+						}
+					}
+
+					.highlight {
+						box-shadow: inset 0 0 2px 99999px rgba(111, 227, 33, 0.3);
+					}
 				}
 			}
 		}
 
 		.rightSidebar {
-			max-width: 25vw;
-
-			font-size: 1.5rem;
+			max-width: $sidebarWidth;
+			font-size: 0.9rem;
 
 			fieldset {
+				legend {
+					font-size: 1rem;
+				}
+
 				margin: 20px 0;
 				padding: 1rem;
 				border-radius: 20px;
@@ -184,27 +215,35 @@
 					rgba(255, 255, 255, 0.2) 0%,
 					rgba(255, 255, 255, 0.15) 100%
 				);
-				// background: radial-gradient(125.61% 785.06% at -25.61% 6.4%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.28) 99.98%, rgba(255, 255, 255, 0.319531) 99.99%, rgba(255, 255, 255, 0.15) 100%);
 
-				textarea {
-					font-family: inherit;
-					font-size: inherit;
-					color: inherit;
-					width: 90%;
-					max-width: 90%;
-					border-radius: 5px;
-					background: radial-gradient(
-						100% 625% at 0% 0%,
-						rgba(255, 255, 255, 0.2) 0%,
-						rgba(255, 255, 255, 0.15) 100%
-					);
+				p {
+					margin: 0;
+				}
+
+				.inputbox {
+					display: flex;
+					justify-content: center;
+					padding: 0.5rem 0;
+
+					textarea {
+						font-family: inherit;
+						font-size: inherit;
+						color: inherit;
+
+						width: 100%;
+						border-radius: 5px;
+						background: radial-gradient(
+							100% 625% at 0% 0%,
+							rgba(255, 255, 255, 0.2) 0%,
+							rgba(255, 255, 255, 0.15) 100%
+						);
+					}
 				}
 
 				button {
 					font-family: inherit;
 					font-size: inherit;
 					color: inherit;
-					margin-top: 1rem;
 					padding: 0 0.5rem;
 					text-align: center;
 					border-radius: 20px;
@@ -214,12 +253,15 @@
 						rgba(255, 255, 255, 0.15) 100%
 					);
 				}
+				.warning {
+					display: inline-block;
+					margin-left: 0.5rem;
+					color: rgba(255, 201, 52, 0.941);
+				}
 			}
 
-			.warning {
-				display: inline-block;
-				margin-left: 2rem;
-				color: rgba(255, 201, 52, 0.941);
+			.historyOverview {
+				text-align: center;
 			}
 
 			.lastmove {
@@ -266,8 +308,10 @@
 
 		a {
 			font-weight: 500;
-			color: #779556;
-			text-decoration: inherit;
+			color: #f6f0e3;
+			// text-decoration: inherit;
+			// t-underline-offset: 2px;
+			text-underline-offset: 2px;
 		}
 
 		a:hover {
@@ -282,9 +326,12 @@
 	}
 }
 
+// tablet
 @media screen and (min-width: 600px) and (max-width: 1000px) {
 	$bodyPadding: 10px;
-	$boardHeight: 80vw; // calc(min(100vh - 2 * $bodyPadding, 100vw / 2));
+	$boardHeight: 80vw;
+	$boardWidth: $boardHeight;
+	$capturedPiecesBarHeight: 2.5rem;
 
 	.App {
 		padding: $bodyPadding;
@@ -300,15 +347,15 @@
 			src: url(/EBGaramond.ttf) format("truetype");
 		}
 
-		font-family: "EBGaramond";
+		font-family: Cantarell, sans-serif;
 
 		.Sidebar {
-			// max-width: 25vw;
 			flex: 1 1 0;
 			display: flex;
 			flex-direction: column;
 
 			.title {
+				font-family: "EBGaramond";
 				font-size: 2rem;
 				font-weight: bold;
 				text-align: center;
@@ -326,6 +373,7 @@
 			.features {
 				display: flex;
 				justify-content: space-evenly;
+				padding: 0.4rem 0;
 
 				.feature {
 					padding: 0 1rem;
@@ -343,6 +391,7 @@
 				}
 
 				.selected-feature {
+					transform: scale(1.05);
 					background: radial-gradient(
 						125.61% 785.06% at -25.61% 6.4%,
 						rgba(255, 255, 255, 0.55) 0%,
@@ -354,30 +403,19 @@
 			}
 
 			.credits {
-				display: none; // FIXME make it small and to the corner
-				// margin-top: auto;
-				// text-align: left;
-
-				// display: flex;
-
-				// .avatar {
-				//   border-radius: 50%;
-				//   height: 4rem;
-				//   margin-right: 1rem;
-				// }
-
-				// .links {
-				//   display: flex;
-				//   align-content: center;
-				// }
+				display: none;
 			}
 		}
 
 		.boardContainer {
-			$chessboardSize: calc($boardHeight - (2 * 15px));
+			$borderSize: 8px;
+			$capturedPiecesBarHeight: 2.5rem;
+			$chessboardSize: calc(
+				$boardHeight - (2 * $borderSize) - (2 * $capturedPiecesBarHeight)
+			);
 
 			height: $boardHeight;
-			width: $boardHeight;
+			width: calc($chessboardSize + (2 * $borderSize));
 			background-image: url("/wooden_background.jpg");
 			background-size: 100%;
 			border-radius: 20px;
@@ -386,13 +424,48 @@
 			display: grid;
 			place-content: center;
 
+			#capturedWPieces,
+			#capturedBPieces {
+				height: $capturedPiecesBarHeight;
+				width: $chessboardSize;
+				display: flex;
+				backdrop-filter: blur(4px);
+				background: radial-gradient(
+					100% 625% at 0% 0%,
+					rgba(255, 255, 255, 0.2) 0%,
+					rgba(255, 255, 255, 0.15) 100%
+				);
+				.fallenPieceTile {
+					height: calc($chessboardSize/16);
+					width: calc($chessboardSize/16);
+					margin-top: 5px;
+
+					display: grid;
+					place-content: center;
+
+					z-index: 9999;
+					.fallenPiece {
+						width: calc($chessboardSize/16);
+						height: calc($chessboardSize/16);
+						background-repeat: no-repeat;
+						background-position: center;
+						background-size: calc($chessboardSize/16);
+					}
+				}
+			}
+			#capturedBPieces {
+				border-radius: 0 0 15px 15px;
+			}
+			#capturedWPieces {
+				border-radius: 15px 15px;
+			}
+
 			#chessboard {
 				height: $chessboardSize;
 				width: $chessboardSize;
 				background-image: url("/chessboard.jpg");
 				background-size: 100%;
 
-				// place-content: center;
 				display: flex;
 				flex-wrap: wrap;
 
@@ -413,11 +486,7 @@
 				}
 
 				.highlight {
-					box-shadow: inset 0 0 2px 99999px rgba(111, 227, 33, 0.3); // for highlighting tiles
-					// box-sizing: border-box; // for inner borders
-					// border: 5px ridge #1a8fc2ea;
-					// position: relative;
-					// z-index: 9999;
+					box-shadow: inset 0 0 2px 99999px rgba(111, 227, 33, 0.3);
 				}
 			}
 		}
@@ -435,27 +504,35 @@
 					rgba(255, 255, 255, 0.2) 0%,
 					rgba(255, 255, 255, 0.15) 100%
 				);
-				// background: radial-gradient(125.61% 785.06% at -25.61% 6.4%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.28) 99.98%, rgba(255, 255, 255, 0.319531) 99.99%, rgba(255, 255, 255, 0.15) 100%);
 
-				textarea {
-					font-family: inherit;
-					font-size: inherit;
-					color: inherit;
-					width: 90%;
-					max-width: 90%;
-					border-radius: 5px;
-					background: radial-gradient(
-						100% 625% at 0% 0%,
-						rgba(255, 255, 255, 0.2) 0%,
-						rgba(255, 255, 255, 0.15) 100%
-					);
+				p {
+					margin: 0;
+				}
+
+				.inputbox {
+					display: flex;
+					justify-content: center;
+					padding: 0.5rem 0;
+
+					textarea {
+						font-family: inherit;
+						font-size: inherit;
+						color: inherit;
+
+						width: 100%;
+						border-radius: 5px;
+						background: radial-gradient(
+							100% 625% at 0% 0%,
+							rgba(255, 255, 255, 0.2) 0%,
+							rgba(255, 255, 255, 0.15) 100%
+						);
+					}
 				}
 
 				button {
 					font-family: inherit;
 					font-size: inherit;
 					color: inherit;
-					margin-top: 1rem;
 					padding: 0 0.5rem;
 					text-align: center;
 					border-radius: 20px;
@@ -465,12 +542,46 @@
 						rgba(255, 255, 255, 0.15) 100%
 					);
 				}
+
+				.warning {
+					display: inline-block;
+					margin-left: 2rem;
+					color: rgba(255, 201, 52, 0.941);
+				}
 			}
 
-			.warning {
-				display: inline-block;
-				margin-left: 2rem;
-				color: rgba(255, 201, 52, 0.941);
+			.submitted {
+				display: none;
+			}
+
+			.historyOverview {
+				text-align: center;
+			}
+
+			.lastmove {
+				margin: 0.5rem;
+				padding: 0 0.5rem;
+				text-align: center;
+				vertical-align: middle;
+				border-radius: 5px;
+				backdrop-filter: blur(4px);
+				background: radial-gradient(
+					100% 625% at 0% 0%,
+					rgba(255, 255, 255, 0.2) 0%,
+					rgba(255, 255, 255, 0.15) 100%
+				);
+
+				display: flex;
+				p {
+					margin: 0;
+				}
+				.movingPiece {
+					width: 1.5rem;
+					height: 1.5rem;
+					background-repeat: no-repeat;
+					background-position: center;
+					background-size: 1.5rem;
+				}
 			}
 
 			.interactive-history div {
@@ -501,9 +612,12 @@
 	}
 }
 
+// phone
 @media screen and (max-width: 600px) {
 	$bodyPadding: 10px;
-	$boardHeight: 80vw; // calc(min(100vh - 2 * $bodyPadding, 100vw / 2));
+	$boardHeight: calc(min(100vh - 2 * $bodyPadding, 100vw));
+	$boardWidth: $boardHeight;
+	$capturedPiecesBarHeight: 2.5rem;
 
 	.App {
 		padding: $bodyPadding;
@@ -519,15 +633,15 @@
 			src: url(/EBGaramond.ttf) format("truetype");
 		}
 
-		font-family: "EBGaramond";
+		font-family: Cantarell, sans-serif;
 
 		.Sidebar {
-			// max-width: 25vw;
 			flex: 1 1 0;
 			display: flex;
 			flex-direction: column;
 
 			.title {
+				font-family: "EBGaramond";
 				font-size: 2rem;
 				font-weight: bold;
 				text-align: center;
@@ -538,16 +652,19 @@
 			}
 
 			h3 {
-				font-size: 1rem;
+				font-size: 0.8rem;
 				font-weight: bold;
+				text-align: center;
 			}
 
 			.features {
 				display: flex;
 				justify-content: space-evenly;
+				padding: 0.4rem 0;
 
 				.feature {
-					padding: 0 1rem;
+					padding: 0 0.5rem;
+					margin: 0 0.5rem;
 					border-radius: 20px;
 					backdrop-filter: blur(4px);
 					background: radial-gradient(
@@ -573,30 +690,19 @@
 			}
 
 			.credits {
-				display: none; // FIXME make it small and to the corner
-				// margin-top: auto;
-				// text-align: left;
-
-				// display: flex;
-
-				// .avatar {
-				//   border-radius: 50%;
-				//   height: 4rem;
-				//   margin-right: 1rem;
-				// }
-
-				// .links {
-				//   display: flex;
-				//   align-content: center;
-				// }
+				display: none;
 			}
 		}
 
 		.boardContainer {
-			$chessboardSize: calc($boardHeight - (2 * 15px));
+			$borderSize: 8px;
+			$capturedPiecesBarHeight: 1.8rem;
+			$chessboardSize: calc(
+				$boardHeight - (2 * $borderSize) - (2 * $capturedPiecesBarHeight)
+			);
 
 			height: $boardHeight;
-			width: $boardHeight;
+			width: calc($chessboardSize + (2 * $borderSize));
 			background-image: url("/wooden_background.jpg");
 			background-size: 100%;
 			border-radius: 20px;
@@ -605,13 +711,48 @@
 			display: grid;
 			place-content: center;
 
+			#capturedWPieces,
+			#capturedBPieces {
+				height: $capturedPiecesBarHeight;
+				width: $chessboardSize;
+				display: flex;
+				backdrop-filter: blur(4px);
+				background: radial-gradient(
+					100% 625% at 0% 0%,
+					rgba(255, 255, 255, 0.2) 0%,
+					rgba(255, 255, 255, 0.15) 100%
+				);
+				.fallenPieceTile {
+					height: calc($chessboardSize/16);
+					width: calc($chessboardSize/16);
+					margin-top: 5px;
+
+					display: grid;
+					place-content: center;
+
+					z-index: 9999;
+					.fallenPiece {
+						width: calc($chessboardSize/16);
+						height: calc($chessboardSize/16);
+						background-repeat: no-repeat;
+						background-position: center;
+						background-size: calc($chessboardSize/16);
+					}
+				}
+			}
+			#capturedBPieces {
+				border-radius: 0 0 15px 15px;
+			}
+			#capturedWPieces {
+				border-radius: 15px 15px;
+			}
+
 			#chessboard {
 				height: $chessboardSize;
 				width: $chessboardSize;
 				background-image: url("/chessboard.jpg");
 				background-size: 100%;
 
-				// place-content: center;
 				display: flex;
 				flex-wrap: wrap;
 
@@ -632,11 +773,7 @@
 				}
 
 				.highlight {
-					box-shadow: inset 0 0 2px 99999px rgba(111, 227, 33, 0.3); // for highlighting tiles
-					// box-sizing: border-box; // for inner borders
-					// border: 5px ridge #1a8fc2ea;
-					// position: relative;
-					// z-index: 9999;
+					box-shadow: inset 0 0 2px 99999px rgba(111, 227, 33, 0.3);
 				}
 			}
 		}
@@ -654,27 +791,35 @@
 					rgba(255, 255, 255, 0.2) 0%,
 					rgba(255, 255, 255, 0.15) 100%
 				);
-				// background: radial-gradient(125.61% 785.06% at -25.61% 6.4%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.28) 99.98%, rgba(255, 255, 255, 0.319531) 99.99%, rgba(255, 255, 255, 0.15) 100%);
 
-				textarea {
-					font-family: inherit;
-					font-size: inherit;
-					color: inherit;
-					width: 90%;
-					max-width: 90%;
-					border-radius: 5px;
-					background: radial-gradient(
-						100% 625% at 0% 0%,
-						rgba(255, 255, 255, 0.2) 0%,
-						rgba(255, 255, 255, 0.15) 100%
-					);
+				p {
+					margin: 0;
+				}
+
+				.inputbox {
+					display: flex;
+					justify-content: center;
+					padding: 0.5rem 0;
+
+					textarea {
+						font-family: inherit;
+						font-size: inherit;
+						color: inherit;
+
+						width: 100%;
+						border-radius: 5px;
+						background: radial-gradient(
+							100% 625% at 0% 0%,
+							rgba(255, 255, 255, 0.2) 0%,
+							rgba(255, 255, 255, 0.15) 100%
+						);
+					}
 				}
 
 				button {
 					font-family: inherit;
 					font-size: inherit;
 					color: inherit;
-					margin-top: 1rem;
 					padding: 0 0.5rem;
 					text-align: center;
 					border-radius: 20px;
@@ -684,12 +829,45 @@
 						rgba(255, 255, 255, 0.15) 100%
 					);
 				}
+				.warning {
+					display: inline-block;
+					margin-left: 2rem;
+					color: rgba(255, 201, 52, 0.941);
+				}
 			}
 
-			.warning {
-				display: inline-block;
-				margin-left: 2rem;
-				color: rgba(255, 201, 52, 0.941);
+			.submitted {
+				display: none;
+			}
+
+			.historyOverview {
+				text-align: center;
+			}
+
+			.lastmove {
+				margin: 0.5rem;
+				padding: 0 0.5rem;
+				text-align: center;
+				vertical-align: middle;
+				border-radius: 5px;
+				backdrop-filter: blur(4px);
+				background: radial-gradient(
+					100% 625% at 0% 0%,
+					rgba(255, 255, 255, 0.2) 0%,
+					rgba(255, 255, 255, 0.15) 100%
+				);
+
+				display: flex;
+				p {
+					margin: 0;
+				}
+				.movingPiece {
+					width: 1.5rem;
+					height: 1.5rem;
+					background-repeat: no-repeat;
+					background-position: center;
+					background-size: 1.5rem;
+				}
 			}
 
 			.interactive-history div {

@@ -22,6 +22,7 @@ interface NotationToBoardProps {
 
 const NotationToBoard = ({ freshGame, setFreshGame }: NotationToBoardProps) => {
 	const [input, setInput] = useState("");
+	const [submitted, setSubmitted] = useState(false);
 	const [invalidInput, setInvalidInput] = useState(false);
 	const [game, setGame] = useState(new Chess());
 	const [fixedGame, setFixedGame] = useState(new Chess());
@@ -44,6 +45,7 @@ const NotationToBoard = ({ freshGame, setFreshGame }: NotationToBoardProps) => {
 			loadPgn(input);
 			setInvalidInput(false);
 			setCurrentMove(fixedGame.history().length - 1);
+			setSubmitted(true);
 		} else setInvalidInput(true);
 	};
 
@@ -91,32 +93,36 @@ const NotationToBoard = ({ freshGame, setFreshGame }: NotationToBoardProps) => {
 				setStep={setStep}
 			/>
 			<div className="rightSidebar">
-				<fieldset>
-					<legend>Enter SAN</legend>
+				<fieldset className={(submitted && !invalidInput) ? "submitted" : ""}>
+					<legend>SAN Input</legend>
 					<p>
-						Enter your moves in algebraic notation in the input box below. Click on
-						submit once you've done so.
+						Add your moves in SAN in the input box below and click on Submit.
 					</p>
-					<textarea
-						id="san-input"
-						rows={5}
-						cols={28}
-						name="SAN input"
-						placeholder="Enter notation here"
-						required
-						onChange={e => {
-							setInput(e.target.value);
-							setInvalidInput(false);
-						}}></textarea>
-					<br />
+					<div className="inputbox">
+						<textarea
+							id="san-input"
+							rows={5}
+							cols={28}
+							name="SAN input"
+							placeholder="Enter notation here"
+							required
+							onChange={e => {
+								setInput(e.target.value);
+								setInvalidInput(false);
+							}}>
+						</textarea>
+					</div>
 					<button onClick={() => tryInput()}>Submit</button>
 					{input && invalidInput && (
 						<div className="warning">Invalid input, try again.</div>
 					)}
 				</fieldset>
-				<p>
-					Here are your moves
-					{currentMove > 0 ? ` (selected move: ${currentMove + 1})` : ""}.{" "}
+				<p className="historyOverview">
+					Your moves will be displayed below <br />
+					{submitted && currentMove >= 0 ? <>
+						Click to jump to a specific game state<br /> Currently selected move: {currentMove + 1}
+					</> : ""}
+
 				</p>
 				{interactiveHistory()}
 			</div>
