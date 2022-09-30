@@ -11794,6 +11794,7 @@ reactJsxRuntime_production_min.jsxs = q;
     module.exports = reactJsxRuntime_production_min;
   }
 })(jsxRuntime);
+const Fragment = jsxRuntime.exports.Fragment;
 const jsx = jsxRuntime.exports.jsx;
 const jsxs = jsxRuntime.exports.jsxs;
 function createMotionComponent({
@@ -17369,7 +17370,7 @@ const BoardToNotation = ({
         animate: {
           opacity: 1
         },
-        children: "Below you can find the algebraic notation incrementally being added for your moves."
+        children: "Move some pieces on the left to incrementally generate algebraic notation. Click on a piece to highlight valid moves."
       }), /* @__PURE__ */ jsx("div", {
         className: "chess-moves",
         children: parse$1(game.pgn({
@@ -17385,6 +17386,7 @@ const NotationToBoard = ({
   setFreshGame
 }) => {
   const [input, setInput] = react.exports.useState("");
+  const [submitted, setSubmitted] = react.exports.useState(false);
   const [invalidInput, setInvalidInput] = react.exports.useState(false);
   const [game, setGame] = react.exports.useState(new chess.Chess());
   const [fixedGame, setFixedGame] = react.exports.useState(new chess.Chess());
@@ -17405,6 +17407,7 @@ const NotationToBoard = ({
       loadPgn(input);
       setInvalidInput(false);
       setCurrentMove(fixedGame.history().length - 1);
+      setSubmitted(true);
     } else
       setInvalidInput(true);
   };
@@ -17453,22 +17456,26 @@ const NotationToBoard = ({
     }), /* @__PURE__ */ jsxs("div", {
       className: "rightSidebar",
       children: [/* @__PURE__ */ jsxs("fieldset", {
+        className: submitted && !invalidInput ? "submitted" : "",
         children: [/* @__PURE__ */ jsx("legend", {
-          children: "Enter SAN"
+          children: "SAN Input"
         }), /* @__PURE__ */ jsx("p", {
-          children: "Enter your moves in algebraic notation in the input box below. Click on submit once you've done so."
-        }), /* @__PURE__ */ jsx("textarea", {
-          id: "san-input",
-          rows: 5,
-          cols: 28,
-          name: "SAN input",
-          placeholder: "Enter notation here",
-          required: true,
-          onChange: (e) => {
-            setInput(e.target.value);
-            setInvalidInput(false);
-          }
-        }), /* @__PURE__ */ jsx("br", {}), /* @__PURE__ */ jsx("button", {
+          children: "Add your moves in SAN in the input box below and click on Submit."
+        }), /* @__PURE__ */ jsx("div", {
+          className: "inputbox",
+          children: /* @__PURE__ */ jsx("textarea", {
+            id: "san-input",
+            rows: 5,
+            cols: 28,
+            name: "SAN input",
+            placeholder: "Enter notation here",
+            required: true,
+            onChange: (e) => {
+              setInput(e.target.value);
+              setInvalidInput(false);
+            }
+          })
+        }), /* @__PURE__ */ jsx("button", {
           onClick: () => tryInput(),
           children: "Submit"
         }), input && invalidInput && /* @__PURE__ */ jsx("div", {
@@ -17476,7 +17483,10 @@ const NotationToBoard = ({
           children: "Invalid input, try again."
         })]
       }), /* @__PURE__ */ jsxs("p", {
-        children: ["Here are your moves", currentMove > 0 ? ` (selected move: ${currentMove + 1})` : "", ".", " "]
+        className: "historyOverview",
+        children: ["Your moves will be displayed below ", /* @__PURE__ */ jsx("br", {}), submitted && currentMove >= 0 ? /* @__PURE__ */ jsxs(Fragment, {
+          children: ["Click to jump to a specific game state", /* @__PURE__ */ jsx("br", {}), " Currently selected move: ", currentMove + 1]
+        }) : ""]
       }), interactiveHistory()]
     })]
   });
@@ -17491,10 +17501,10 @@ const Sidebar = ({
     children: [/* @__PURE__ */ jsxs("div", {
       children: [/* @__PURE__ */ jsx("div", {
         className: "title",
-        children: "Chess transcriber"
+        children: "Chess Transcriber"
       }), /* @__PURE__ */ jsx("div", {
         className: "subtitle",
-        children: "Select the feature you want to use below."
+        children: "Choose an option below"
       }), /* @__PURE__ */ jsxs("div", {
         className: "features",
         children: [/* @__PURE__ */ jsxs("div", {
@@ -17509,7 +17519,7 @@ const Sidebar = ({
             children: "Transcribe moves to algebraic notation"
           }), /* @__PURE__ */ jsx("p", {
             className: "feature-desc",
-            children: "Standard Algebraic Notation (SAN) is a method for recording and describing moves in a game of chess, recognized by the international chess governing body FIDE. This app lets you play a game on the adjacent chessboard, and obtain the corresponding notation at the right."
+            children: "Play a game on the adjacent chessboard, and obtain the corresponding Standard Algebraic Notation at the right (SAN is a method for recording and describing moves in a game of chess, recognized by the international chess governing body FIDE)."
           })]
         }), /* @__PURE__ */ jsxs("div", {
           className: "feature " + (selectedFeature === 1 ? "selected-feature" : ""),
@@ -17523,7 +17533,7 @@ const Sidebar = ({
             children: "Play recorded notation of a game"
           }), /* @__PURE__ */ jsx("p", {
             className: "feature-desc",
-            children: "This feature lets you input the notation for a given game and walk through it using the controls provided on the right. Programmed logic makes sure you can only input valid game notations."
+            children: "Enter the notation for a given game in an input box on the right. Walk through the game using the displayed controls (programmed logic ensures you can only input valid game notations)."
           })]
         })]
       })]
@@ -17542,16 +17552,16 @@ const Credits = () => /* @__PURE__ */ jsxs("div", {
   }), /* @__PURE__ */ jsx("div", {
     className: "links",
     children: /* @__PURE__ */ jsxs("p", {
-      children: ["By ", /* @__PURE__ */ jsx("a", {
+      children: ["Made by ", /* @__PURE__ */ jsx("a", {
         href: "https://paramjit.org",
         children: "Paramjit"
-      }), " with \u2764\uFE0F", /* @__PURE__ */ jsx("br", {}), "explore the source on", " ", /* @__PURE__ */ jsx("a", {
+      }), " with \u2661", /* @__PURE__ */ jsx("br", {}), "source on", " ", /* @__PURE__ */ jsx("a", {
         href: "https://github.com/busywhistling/chess_transcriber",
         children: "github"
       }), " or", " ", /* @__PURE__ */ jsx("a", {
         href: "https://codesandbox.io/p/github/busywhistling/chess_transcriber",
         children: "codesandbox"
-      }), "."]
+      })]
     })
   })]
 });
